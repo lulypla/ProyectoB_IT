@@ -33,6 +33,7 @@ header label:hover{
     list-style: none;
     padding: 0;
     display: flex;
+    font-size: 20px;
 }
 
 .menu li{
