@@ -1,3 +1,55 @@
 .item:nth-child(1){
 	background:green;
 }
+
+.body{
+	display: grid;
+	grid-template-rows: 3fr 2fr 1fr;
+	grid-template-columns: 4fr 1.5fr;
+	grid-template-areas: 
+	"main aside"
+	"section aside"
+	"footer footer";
+	margin: 0 3%;
+}
+.body main{
+	grid-area: main;
+}
+.body aside{
+	grid-area: aside;
+}
+.body section{
+	grid-area: section;
+}
+.body footer{
+	grid-area: footer;
+}
+.video{
+	width: 70%;
+	margin-top:10px;
+}
+.titulo{
+	color: green;
+	margin-top: 10px;
+}
+
+@media(max-width: 768px){
+	.body{
+		display: grid;
+		grid-template-rows: 2fr 2fr 2fr 1fr;
+		grid-template-columns: 1fr;
+		grid-template-areas: 
+		"main"
+		"aside"
+		"section"
+		"footer";
+		margin: 10px 0px;
+
+	}
+	.video{
+		width: 100%;
+	}
+	.titulo{
+		text-align: center;
+	}
+}
