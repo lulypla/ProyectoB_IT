@@ -61,7 +61,20 @@ header.contenedor{
     width: 10%;
     margin-left:3%;
 }
-
+header .template1{
+    float: right;
+    display: table;
+    margin-top:10px;
+    margin-right: 3%;
+}
+header .template1 input:nth-child(1){
+    background: green;
+    color: #fff;
+    padding: 5px;
+}
+header .template1 input:nth-child(2){
+    padding: 5px;
+}
 
 
 

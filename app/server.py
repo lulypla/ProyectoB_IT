@@ -10,33 +10,33 @@ app = Flask(__name__)
 @app.route('/', methods=['GET','POST'])
 def index():
 	# el servidor arranca con esta página raiz
-    return app.send_static_file('index.html')
+    return render_template('index.html')
 
 
 @app.route('/ofertas', methods=['GET','POST'])
 def ofertas():
 	# pagina ofertas
-    return app.send_static_file('ofertas.html')
+    return render_template('ofertas.html')
 
 @app.route('/centros', methods=['GET','POST'])
 def centros():
 	# listado de comercios adheridos y centros de canje 
-    return app.send_static_file('centros.html')
+    return render_template('centros.html')
 
 @app.route('/EcoBits', methods=['GET','POST'])
 def EcoBits():
 	# sobre EcoBits 
-    return app.send_static_file('EcoBits.html')
+    return render_template('EcoBits.html')
 
 @app.route('/contacto', methods=['GET','POST'])
 def contacto():
 	# Contacto - formulario, teléfono,...
-    return app.send_static_file('contacto.html')
+    return render_template('contacto.html')
 
 @app.route('/FAQ', methods=['GET','POST'])
 def faq():
 	# preguntas frecuentes 
-    return app.send_static_file('faq.html')
+    return render_template('faq.html')
 
 
 

@@ -1,0 +1,7 @@
+{% if session %}
+<a href="#">session['usuario']</a>
+<input type="submit" name="panel" value="Mi panel">
+{% else %}
+<input type="submit" name="acceso" value="Acceder">
+<input type="submit" name="registro" value="Registrarse">
+{% endif %}

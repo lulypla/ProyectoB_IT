@@ -4,14 +4,16 @@
     <meta charset="utf-8">
     <title>EcoBits</title>
     <link rel = "stylesheet" href = "static/css/estilos.css">
-    <link rel = "stylesheet" href = "static/css/EcoBits.css">
+    <link rel = "stylesheet" href = "static/css/centros.css">
 <meta name = "viewport" content = "width-device-width, user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1">
 </head>
 <body>
     <div class="contenedor"><a href="/"><img class="eco" src="static/imagenes/eco.png"></a></div>
 
     <header>
-        
+       <div class="template1">
+            {% include 'botones.html' %}
+        </div> 
 
         <input type = "checkbox" id = "btn-menu">
             <label for="btn-menu"><img src="static/imagenes/iconmenu.png"></label>
