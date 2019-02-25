@@ -4,13 +4,17 @@
 
 .body{
 	display: grid;
-	grid-template-rows: 3fr 2fr 1fr;
-	grid-template-columns: 4fr 1.5fr;
-	grid-template-areas: 
+	grid-template-rows:1fr 3fr 2fr 1fr;
+	grid-template-columns: 4fr;
+	grid-template-areas:
+	"header header"
 	"main aside"
 	"section aside"
 	"footer footer";
 	margin: 0 3%;
+}
+.body header{
+	grid-area: header;
 }
 .body main{
 	grid-area: main;
@@ -24,14 +28,7 @@
 .body footer{
 	grid-area: footer;
 }
-.video{
-	width: 70%;
-	margin-top:10px;
-}
-.titulo{
-	color: green;
-	margin-top: 10px;
-}
+
 
 @media(max-width: 768px){
 	.body{
@@ -46,10 +43,5 @@
 		margin: 10px 0px;
 
 	}
-	.video{
-		width: 100%;
-	}
-	.titulo{
-		text-align: center;
-	}
+
 }
