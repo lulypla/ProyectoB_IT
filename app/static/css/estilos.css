@@ -67,6 +67,7 @@ header .template1{
     display: table;
     margin-top:10px;
     margin-right: 3%;
+    padding: 0 10px;
 }
 header .template1 input:nth-child(1){
     background: green;
@@ -82,32 +83,35 @@ header .template1 input:nth-child(2){
 @media (max-width: 768px){
     header label{
         display: block;
+        float: left;
     }
     .menu{
         position: absolute;
         background: linear-gradient(rgb(87, 206, 51), rgb(154, 237, 158));
         border-bottom: 3px solid rgb(172, 119, 183, 0.7);
         margin-left: -60%;
-        transition: all 0.5s;
-        z-index: 100;
-        
+        margin-top: 50px;
+
         
     }
     .menu ul{
         flex-direction: column;
-        margin-left: 0;
-        float:left;
+
+
     }
     .menu li{
         border-bottom: 1px solid rgb(86, 165, 99, 0.3);
     }
     #btn-menu:checked ~ .menu{
-        margin: 0;
+        margin: 50px 0;
+        transition: all 0.5s;
         
         
     }
     .eco{
-        width:39%;
+        width:35%;
+        
+
     }
     
 
