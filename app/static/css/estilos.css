@@ -91,11 +91,16 @@ header .template1 input:nth-child(2){
         border-bottom: 3px solid rgb(172, 119, 183, 0.7);
         margin-left: -60%;
         margin-top: 50px;
+        z-index: 3;
+
+
 
         
     }
     .menu ul{
         flex-direction: column;
+
+
 
 
     }
@@ -113,7 +118,9 @@ header .template1 input:nth-child(2){
         
 
     }
-    
+    .slider{
+        position: relative;
+    }
 
   
 }
