@@ -63,12 +63,15 @@ h2{
 	position: relative;
 }
 
+/* letras del slider */
 
 .img h2 span{
 	background: linear-gradient(rgb(243, 243, 243,0.7), rgb(239, 247, 237,0.5));
 	color: green;
 	display: inline;
 	padding: 2%;
+	border-bottom-right-radius: 35%;
+	border-top-left-radius: 35%;
 }
 .arriba{
 	top:15%;
