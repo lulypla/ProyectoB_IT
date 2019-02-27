@@ -1,7 +1,15 @@
+/* 
+- Color de background al estar posicionado en la página 
+- Distribución de los elementos en la página con el sistema de grilla
+- Slider 
+- Letras sobre las imágenes del Slider
+- Sección con iconos y pequeña descripción
+*/
+
 .item:nth-child(1){
 	background:green;
 }
-
+/* Grilla */
 .body{
 	display: grid;
 	grid-template-areas:
@@ -84,6 +92,7 @@ h2{
 	width: 60%;
 }
 
+/* Transiciones del Slider */
 
 @keyframes cambio{
 	0%,20%{
@@ -147,6 +156,35 @@ body{
 		overflow-x: hidden;
 	}
 
+/* Sección iconos */
+#info{
+	width: 100%;
+	margin-top:0; 
+}
+.titulo,.ofertas{
+	text-align: center;
+	margin-top: -100px;
+	margin-bottom: 25px;
+	color: green;
+}
+#info .seccionIconos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.icono img{
+	width: 12%;
+
+}
+.icono{
+	text-align: center;
+	color: green;
+	width: 23%;
+}
+
+
 
 /* pantallas pequeñas */
 
@@ -156,8 +194,8 @@ body{
 		grid-template-areas:
 		"header" 
 		"main"
-		"aside"
 		"section"
+		"aside"
 		"footer";
 		margin:0px;
 
@@ -172,8 +210,23 @@ body{
 	.arriba{
 		top: 5%;
 	}
-	
+	.icono img{
+		width: 13%;
+	}
+	.icono h4, .icono p{
+		font-size: 13px;
+	}
+	.icono{
+		width: 40%;
+		margin: 5px 0;
+	}
+	.titulo{
+		margin-top: 0;
+		font-size: 14px;
+	}
+	.ofertas{
+		margin-top: 20px;
+		font-size: 14px;
+	}
 
 }
-
-
