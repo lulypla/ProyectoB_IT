@@ -65,19 +65,19 @@ h2{
 
 
 .img h2 span{
-	background: linear-gradient(rgb(243, 243, 243,0.7), rgb(239, 247, 237,0.7));
+	background: linear-gradient(rgb(243, 243, 243,0.7), rgb(239, 247, 237,0.5));
 	color: green;
 	display: inline;
 	padding: 2%;
 }
 .arriba{
-	top:5%;
+	top:15%;
 	left:5%;
 	width: 60%;
 }
 .abajo{
 	top: 50%;
-	left:65%;
+	left:70%;
 	width: 60%;
 }
 
@@ -164,6 +164,10 @@ body{
 	}
 	.abajo{
 		left: 40%;
+		top: 55%;
+	}
+	.arriba{
+		top: 5%;
 	}
 	
 
