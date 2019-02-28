@@ -1,6 +1,9 @@
 /* footer */
 footer{
 	background: black;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
 
 }
@@ -8,6 +11,7 @@ footer a{
 	text-decoration: none;
 	color: white;
 	font-size: 12px;
+	
 
 }
 footer a:active{
@@ -15,12 +19,11 @@ footer a:active{
 }
 footer li{
 	list-style: none;
-	justify-content: center;
-	align-items: center;
 }
 footer ul{
 	margin: 15px auto;
 	display: inline-block;
+	
 
 
 }

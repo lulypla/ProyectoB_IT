@@ -13,7 +13,7 @@ Estilos de Secciones de index.html
 	"main main"
 	"section article"
 	"aside article"
-	"cercanos cercanos"
+	"cercanos org"
 	"sociales sociales"
 	"footer footer";
 }
@@ -37,6 +37,9 @@ Estilos de Secciones de index.html
 }
 .body .cercanos{
 	grid-area: cercanos;
+}
+.body .org{
+	grid-area: org;
 }
 .body .sociales{
 	grid-area: sociales;
@@ -92,7 +95,7 @@ h2{
 .arriba{
 	top:15%;
 	left:5%;
-	width: 60%;
+	width: 64%;
 }
 .abajo{
 	top: 50%;
@@ -185,7 +188,7 @@ body{
 }
 
 .icono img{
-	width: 16%;
+	width: 20%;
 
 }
 .icono{
@@ -196,7 +199,7 @@ body{
 
 /* aside */
 aside{
-	margin: 50px 0;
+	margin-top: 50px;
 }
 .aside{
 	width: 100%;
@@ -233,24 +236,58 @@ aside{
 }
 /*  Puntos cercanos */
 .cercanos{
-	width: 100%;
 	margin-bottom: 20px;
+	width: 100%;
+
 }
-.cercanos h3{
+.cercanos h3, .org h3{
 	color: green;
 	text-align: center;
+	margin: 20px auto;
 }
 
+.mapa{
+	width:50%;
+	height: 90%;
+	margin-left: 5%;
+
+}
+
+
+.direccion li{
+	line-height: 3; 
+}
+.mapa, .direccion{
+	display: inline-block;
+}
 /* div sociales*/
 .sociales{
 	width: 100%;
 	background: #eee;
 	padding: 10px;
+	display: flex;
+    flex-wrap: wrap;
+	justify-content: center;
+		
+}
+
+.social img{
+	width: 30px;
+	
+	
+}
+.social{
+	padding: 10px;
+	display: inline-block;
+	text-align: center;
+	
+
+
 }
 
 /* pantallas pequeñas */
 
-@media(max-width: 768px){
+@media(max-width: 799px){
 	.body{
 		display: grid;
 		grid-template-areas:
@@ -260,6 +297,7 @@ aside{
 		"article"
 		"aside"
 		"cercanos"
+		"org"
 		"sociales"
 		"footer";
 		margin:0px;
@@ -269,11 +307,13 @@ aside{
 		font-size: 100%;
 	}
 	.abajo{
-		left: 40%;
+		left: 38%;
 		top: 55%;
+		width: 65%;
 	}
 	.arriba{
 		top: 5%;
+		width: 80%;
 	}
 	.icono img{
 		width: 13%;
@@ -297,5 +337,40 @@ aside{
 	.texto h3{
 		font-size: 15px;
 	}
+	.cercanos{
+		width: 100%;
+	}
+	.mapa{
+		width: 48%;
+		margin-left: 15px;
+		height: 45%;
+		
+	}
+	.direccion{
+		width: 40%;
+		height: 100%;
+	}
+	.direccion li{
+		line-height: 2;
+		font-size: 10px;
+
+	}
+	
+
+}
+@media only screen and (min-width: 800px) and (max-width: 1366px){
+	.abajo{
+		top:60%;
+		left: 65%;
+		font-size: 25px; 
+	}
+	.arriba{
+		top: 5%;
+		font-size: 25px;
+	}
+	.titulo, .h3ofertas{
+		margin-top: -35px;
+	}
+
 
 }
