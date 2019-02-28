@@ -1,9 +1,5 @@
 /* 
-- Color de background al estar posicionado en la página 
-- Distribución de los elementos en la página con el sistema de grilla
-- Slider 
-- Letras sobre las imágenes del Slider
-- Sección con iconos y pequeña descripción
+Estilos de Secciones de index.html
 */
 
 .item:nth-child(1){
@@ -15,7 +11,10 @@
 	grid-template-areas:
 	"header header"
 	"main main"
-	"section aside"
+	"section article"
+	"aside article"
+	"cercanos cercanos"
+	"sociales sociales"
 	"footer footer";
 }
 .body header{
@@ -32,6 +31,15 @@
 }
 .body footer{
 	grid-area: footer;
+}
+.body article{
+	grid-area: article;
+}
+.body .cercanos{
+	grid-area: cercanos;
+}
+.body .sociales{
+	grid-area: sociales;
 }
 
 /* Slider */
@@ -157,14 +165,13 @@ body{
 	}
 
 /* Sección iconos */
-#info{
+#info, .ofertas{
 	width: 100%;
-	margin-top:0; 
 }
-.titulo,.ofertas{
+.titulo,.h3ofertas{
 	text-align: center;
 	margin-top: -100px;
-	margin-bottom: 25px;
+	margin-bottom: 45px;
 	color: green;
 }
 #info .seccionIconos{
@@ -173,9 +180,12 @@ body{
     justify-content: center;
 
 }
+.seccionIconos{
+	margin: 40px 0;
+}
 
 .icono img{
-	width: 12%;
+	width: 16%;
 
 }
 .icono{
@@ -184,7 +194,59 @@ body{
 	width: 23%;
 }
 
+/* aside */
+aside{
+	margin: 50px 0;
+}
+.aside{
+	width: 100%;
+	display: table;
+}
+.texto{
+	display: table-cell;
+	vertical-align: middle;
+}
+.texto h3{
+	margin-left: 45%;
+	color: green;
+}
+.saber{
+	color: white;
+	background: green;
+	margin-left: 90%;
+	margin-top: 30px;
+	padding: 5px;
+}
 
+.aside img{
+	width: 70%;
+	float: right;
+}
+
+/* ofertas destacadas */
+.destacadas{
+	width: 100%;
+
+}
+.destacadas p{
+	text-align: center;
+}
+/*  Puntos cercanos */
+.cercanos{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.cercanos h3{
+	color: green;
+	text-align: center;
+}
+
+/* div sociales*/
+.sociales{
+	width: 100%;
+	background: #eee;
+	padding: 10px;
+}
 
 /* pantallas pequeñas */
 
@@ -195,7 +257,10 @@ body{
 		"header" 
 		"main"
 		"section"
+		"article"
 		"aside"
+		"cercanos"
+		"sociales"
 		"footer";
 		margin:0px;
 
@@ -217,16 +282,20 @@ body{
 		font-size: 13px;
 	}
 	.icono{
-		width: 40%;
+		width: 50%;
 		margin: 5px 0;
 	}
-	.titulo{
-		margin-top: 0;
+	.titulo, .h3ofertas, .cercanos h3{
+		margin-top: 10px;
 		font-size: 14px;
 	}
-	.ofertas{
-		margin-top: 20px;
-		font-size: 14px;
+	aside{
+		margin: 10px 0;
+
+	}
+	
+	.texto h3{
+		font-size: 15px;
 	}
 
 }

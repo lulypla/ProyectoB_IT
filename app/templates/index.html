@@ -5,6 +5,7 @@
     <title>EcoBits</title>
     <link rel = "stylesheet" href = "static/css/estilos.css">
     <link rel = "stylesheet" href = "static/css/inicio.css">
+    <link rel = "stylesheet" href = "static/css/footer.css">
 <meta name = "viewport" content = "width-device-width, user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1">
 <link rel="icon" type="image/png" href="static/imagenes/icon.png">
 </head>
@@ -71,10 +72,37 @@
             </div>
         </div>
     </section>
+
+    <!-- ofertas destacadas -->
+    <article class="ofertas">
+        <h3 class="h3ofertas">Ofertas destacadas</h3>
+        <div class="destacadas">
+            <p>Espacio para ofertas destacadas</p>
+        </div>
+    </article>
+
+    <!-- saber más -->
     <aside>
-        <h3 class="ofertas">Ofertas destacadas</h3>
-        </aside>
+        <div class="aside">
+        <div class="texto">
+            <h3>Cuanto más reciclás,</br>más ganás!</h3>
+            <input type="submit" name="saber" value="Saber más" class="saber">
+        </div>
+            <img src="static/imagenes/reciclando.png">
+        </div>
+    </aside>
+
+    <div class="cercanos">
+            <h3>Encontrá tu punto de reciclaje más cercano</h3>
+    </div>
+
+    <div class="sociales">
+        iconos redes sociales
+    </div>
+
+    <!-- template footer -->
     <footer>
+        {% include 'footer.html' %}
     </footer>
     </div>
 </body>

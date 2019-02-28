@@ -1,0 +1,33 @@
+/* footer */
+footer{
+	background: black;
+
+
+}
+footer a{
+	text-decoration: none;
+	color: white;
+	font-size: 12px;
+
+}
+footer a:active{
+	color: green;
+}
+footer li{
+	list-style: none;
+	justify-content: center;
+	align-items: center;
+}
+footer ul{
+	margin: 15px auto;
+	display: inline-block;
+
+
+}
+
+@media(max-width: 768px){
+	footer a{
+		font-size: 9px;
+	}
+}
+
