@@ -1,5 +1,6 @@
 /*
-- Estilos del header en el que se encuentra el icono de EcoBits, el menú principal y los botones de acceso
+- Estilos del header en el que se encuentra el icono de EcoBits, el menú principal y los botones de acceso, 
+parte de redes sociales abajo, ofertas destacadas
 */
 *{
     margin: 0;
@@ -81,8 +82,45 @@ header .template1 input:nth-child(2){
     padding: 5px;
 }
 
+/* ofertas destacadas */
+.ofertas{
+    width: 100%;
+    margin: 20px;
+
+}
+.ofertas p, .ofertas h3{
+    text-align: center;
+    color:green;
+}
 
 
+/* div sociales*/
+.sociales{
+    width: 100%;
+    background: #eee;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+        
+}
+
+.social img{
+    width: 30px;
+    
+    
+}
+.social{
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+    
+
+
+}
+
+
+/* pantallas pequeñas*/
 @media (max-width: 768px){
     header label{
         display: block;

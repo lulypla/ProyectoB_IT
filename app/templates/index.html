@@ -74,11 +74,8 @@
     </section>
 
     <!-- ofertas destacadas -->
-    <article class="ofertas">
-        <h3 class="h3ofertas">Ofertas destacadas</h3>
-        <div class="destacadas">
-            <p>Espacio para ofertas destacadas</p>
-        </div>
+    <article>
+        {% include 'destacadas.html' %}
     </article>
 
     <!-- saber más -->
@@ -86,7 +83,9 @@
         <div class="aside">
         <div class="texto">
             <h3>Cuanto más reciclás,</br>más ganás!</h3>
+            <form action="FAQ">
             <input type="submit" name="saber" value="Saber más" class="saber">
+            </form>
         </div>
             <img src="static/imagenes/reciclando.png">
         </div>
@@ -105,20 +104,11 @@
             </div>
     </div>
     <dir class="org">
-        <h3>Organizaciones que nos apoyan</h3>
+        <h3>Nos apoyan</h3>
     </dir>
+<!-- Sociales template -->
 
-    <div class="sociales">
-        <div class="social">
-            <img src="static/imagenes/face.png">
-        </div>
-        <div class="social">
-            <img src="static/imagenes/twitter.png">
-        </div>
-        <div class="social">
-            <img src="static/imagenes/instagram.png">
-        </div>
-    </div>
+{% include 'sociales.html' %}
 
     <!-- template footer -->
     <footer>

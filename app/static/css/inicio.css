@@ -168,10 +168,10 @@ body{
 	}
 
 /* Sección iconos */
-#info, .ofertas{
+#info{
 	width: 100%;
 }
-.titulo,.h3ofertas{
+.titulo,article{
 	text-align: center;
 	margin-top: -100px;
 	margin-bottom: 45px;
@@ -226,14 +226,6 @@ aside{
 	float: right;
 }
 
-/* ofertas destacadas */
-.destacadas{
-	width: 100%;
-
-}
-.destacadas p{
-	text-align: center;
-}
 /*  Puntos cercanos */
 .cercanos{
 	margin-bottom: 20px;
@@ -260,30 +252,7 @@ aside{
 .mapa, .direccion{
 	display: inline-block;
 }
-/* div sociales*/
-.sociales{
-	width: 100%;
-	background: #eee;
-	padding: 10px;
-	display: flex;
-    flex-wrap: wrap;
-	justify-content: center;
-		
-}
 
-.social img{
-	width: 30px;
-	
-	
-}
-.social{
-	padding: 10px;
-	display: inline-block;
-	text-align: center;
-	
-
-
-}
 
 /* pantallas pequeñas */
 
@@ -325,7 +294,7 @@ aside{
 		width: 50%;
 		margin: 5px 0;
 	}
-	.titulo, .h3ofertas, .cercanos h3{
+	.titulo, article, .cercanos h3{
 		margin-top: 10px;
 		font-size: 14px;
 	}
@@ -368,7 +337,7 @@ aside{
 		top: 5%;
 		font-size: 25px;
 	}
-	.titulo, .h3ofertas{
+	.titulo, article{
 		margin-top: -35px;
 	}
 

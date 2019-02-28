@@ -16,6 +16,8 @@
 	grid-template-areas:
 	"header header"
 	"section aside"
+	"section aside"
+	"sociales sociales"
 	"footer footer";
 }
 .body header{
@@ -27,6 +29,23 @@
 .body aside{
 	grid-area: aside;
 }
+.body .sociales{
+	grid-area: sociales;
+}
 .body footer{
 	grid-area: footer;
 }
+
+@media(max-width: 799px){
+	.body{
+		display: grid;
+		grid-template-areas:
+		"header" 
+		"main"
+		"section"
+		"aside"
+		"sociales"
+		"footer";
+		margin:0px;
+
+	}

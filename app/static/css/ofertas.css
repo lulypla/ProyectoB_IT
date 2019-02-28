@@ -15,7 +15,9 @@
 	grid-template-columns: 4fr;
 	grid-template-areas:
 	"header header"
-	"section aside"
+	"section article"
+	"aside aside "
+	"sociales sociales"
 	"footer footer";
 }
 .body header{
@@ -24,8 +26,14 @@
 .body section{
 	grid-area: section;
 }
+.body article{
+	grid-area: article; 
+}
 .body aside{
 	grid-area: aside;
+}
+.body .sociales{
+	grid-area: sociales;
 }
 .body footer{
 	grid-area: footer;
