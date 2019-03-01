@@ -1,10 +1,36 @@
 # -*- coding: UTF-8 -*-
 
 import sys, os
-
+import mysql.connector
+import pymysql
+from classes import *
 from flask import Flask, request, render_template, url_for, session, json, redirect
+import json
+import datetime
 
 app = Flask(__name__)
+import mysql.connector
+
+mydb = mysql.connector.connect(host='remotemysql.com', database='0fEBhWrqlk', user='0fEBhWrqlk', password='ecobits123')
+ 
+mycursor = mydb.cursor()
+
+
+mycursor.execute("SELECT * FROM Cliente")
+row_headers=[x[0] for x in mycursor.description]
+rows = mycursor.fetchall()
+json_data=[]
+for result in rows:
+     #if isinstance(result, datetime.datetime):
+     #    fecha = result
+     #    fecha.strftime('%m/%d/%Y')
+     #    print (fecha)
+     #    json_data.append(dict(zip(row_headers,fecha)))
+     #else:   
+     #   json_data.append(dict(zip(row_headers,result)))
+    print (result)#(json.dumps(json_data))
+
+
 
 
 @app.route('/', methods=['GET','POST'])
