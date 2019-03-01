@@ -94,11 +94,11 @@ h2{
 }
 .arriba{
 	top:15%;
-	left:5%;
+	left: 20px;
 	width: 64%;
 }
 .abajo{
-	top: 50%;
+	top: 75%;
 	left:70%;
 	width: 60%;
 }
@@ -173,8 +173,7 @@ body{
 }
 .titulo,article{
 	text-align: center;
-	margin-top: -100px;
-	margin-bottom: 45px;
+	margin: 35px;
 	color: green;
 }
 #info .seccionIconos{
@@ -184,7 +183,7 @@ body{
 
 }
 .seccionIconos{
-	margin: 40px 0;
+	margin-bottom: 30px;
 }
 
 .icono img{
@@ -220,6 +219,11 @@ aside{
 	margin-top: 30px;
 	padding: 5px;
 }
+aside, .cercanos{
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 .aside img{
 	width: 70%;
@@ -228,8 +232,9 @@ aside{
 
 /*  Puntos cercanos */
 .cercanos{
-	margin-bottom: 20px;
+	margin: 20px;
 	width: 100%;
+
 
 }
 .cercanos h3, .org h3{
@@ -240,8 +245,8 @@ aside{
 
 .mapa{
 	width:50%;
-	height: 90%;
-	margin-left: 5%;
+	margin-left: 10px;
+
 
 }
 
@@ -277,11 +282,10 @@ aside{
 	}
 	.abajo{
 		left: 38%;
-		top: 55%;
 		width: 65%;
 	}
 	.arriba{
-		top: 5%;
+		top: 10px;
 		width: 80%;
 	}
 	.icono img{
@@ -295,11 +299,12 @@ aside{
 		margin: 5px 0;
 	}
 	.titulo, article, .cercanos h3{
-		margin-top: 10px;
+		margin-top: 20px;
 		font-size: 14px;
 	}
 	aside{
-		margin: 10px 0;
+		margin: 20px 0;
+		
 
 	}
 	

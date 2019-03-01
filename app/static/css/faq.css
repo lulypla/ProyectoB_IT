@@ -1,12 +1,8 @@
 /*
-- Color de background al estar posicionado en la página 
 - Distribución de los elementos en la página con el sistema de grilla
 */
 
-/* Color */
-.item:nth-child(6){
-	background:green;
-}
+
 /* Grilla */
 .body{
 	display: grid;
