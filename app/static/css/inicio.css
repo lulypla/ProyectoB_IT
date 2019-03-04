@@ -334,16 +334,16 @@ aside, .cercanos{
 }
 @media only screen and (min-width: 800px) and (max-width: 1366px){
 	.abajo{
-		top:60%;
+		top:75%;
 		left: 65%;
 		font-size: 25px; 
 	}
 	.arriba{
-		top: 5%;
+		top: 10%;
 		font-size: 25px;
 	}
-	.titulo, article{
-		margin-top: -35px;
+	.eco{
+		width: 13%;
 	}
 
 

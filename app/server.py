@@ -64,7 +64,15 @@ def faq():
 	# preguntas frecuentes 
     return render_template('faq.html')
 
+@app.route('/ingresar', methods=['GET','POST'])
+def ingresar():
+    # ingresar 
+    return render_template('ingresar.html')
 
+@app.route('/registro', methods=['GET','POST'])
+def registro():
+    # registro 
+    return render_template('registro.html')
 
 
 # levanta el servidor con el método run()

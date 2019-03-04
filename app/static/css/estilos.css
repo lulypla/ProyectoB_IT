@@ -5,6 +5,10 @@ parte de redes sociales abajo, ofertas destacadas
 *{
     margin: 0;
     font-family: sans-serif;
+
+}
+.body{
+    overflow-x:hidden;
 }
 
 header{
@@ -86,6 +90,7 @@ header .template1 input:nth-child(2){
 .ofertas{
     width: 100%;
 
+
 }
 .ofertas p, .ofertas h3{
     text-align: center;
@@ -101,6 +106,7 @@ header .template1 input:nth-child(2){
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 30px;
         
 }
 
@@ -118,9 +124,39 @@ header .template1 input:nth-child(2){
 
 }
 
+/* Sección iconos */
+#info{
+    width: 100%;
+}
+.titulo{
+    text-align: center;
+    margin: 35px;
+    color: green;
+}
+.seccionIconos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.seccionIconos{
+    margin-bottom: 30px;
+}
+
+.icono img{
+    width: 20%;
+
+}
+.icono{
+    text-align: center;
+    color: green;
+    width: 23%;
+}
+
 
 /* pantallas pequeñas*/
 @media (max-width: 768px){
+    
     header label{
         display: block;
         float: left;
@@ -154,13 +190,27 @@ header .template1 input:nth-child(2){
         
     }
     .eco{
-        width:35%;
+        width:30%;
         
 
     }
     .slider{
         position: relative;
     }
+    .icono img{
+        width: 13%;
+    }
+    .icono h4, .icono p{
+        font-size: 13px;
+    }
+    .icono{
+        width: 50%;
+        margin: 5px 0;
+    }
+    .titulo, article, .cercanos h3, .ofertas h3{
+        font-size: 15px;
+    }
+    
 
   
 }

@@ -1,0 +1,98 @@
+/* Grilla */
+.body{
+	display: grid;
+	grid-template-areas:
+	"header header"
+	"section aside"
+	"article aside"
+	"sociales sociales"
+	"footer footer";
+}
+.body header{
+	grid-area: header;
+}
+.body section{
+	grid-area: section;
+}
+.body aside{
+	grid-area: aside;
+}
+.body article{
+	grid-area: article;
+}
+.body .sociales{
+	grid-area: sociales;
+}
+.body footer{
+	grid-area: footer;
+}
+
+section, aside, article{
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.formIngreso{
+	margin: 30px auto;
+    width: 70%;
+    max-width: 500px;
+    background: linear-gradient(rgb(154, 237, 158,0.7),rgb(87, 206, 51));
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid rgb(87, 206, 51, 0.7);
+}
+.seccion{
+	padding: 15px;
+}
+.seccion input{
+	float: right;
+	width: 70%;
+}
+label, .inferior a{
+	color: white;
+}
+.inferior{
+	text-align: center;
+	padding: 20px;
+}
+.inferior input, .inferior a{
+	margin:0 15px;
+}
+.inferior input{
+	color: white;
+	background: green;
+}
+
+
+
+
+@media(max-width: 799px){
+	.body{
+		display: grid;
+		grid-template-areas:
+		"header" 
+		"main"
+		"section"
+		"article"
+		"aside"
+		"sociales"
+		"footer";
+		margin:0px;
+	}
+	.formIngreso{
+		margin: 10px auto;
+	}
+
+	.formIngreso, aside, article{
+		width: 95%;
+	}
+	.formIngreso label, .formIngreso a{
+		font-size: 13px;
+	}
+	article{
+		margin: 0 auto;
+	}
+}

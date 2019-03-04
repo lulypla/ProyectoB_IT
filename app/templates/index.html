@@ -14,7 +14,7 @@
     <div class="body">
     <header>
         <!-- El menú principal -->
-        {% include 'menu.html' %}    
+        {% include 'include/menu.html' %}    
     </header>
     
     <main>
@@ -46,36 +46,15 @@
     </div>      
     </main>
 
-    <section id="info">
-        <h3 class="titulo">Un programa que premia tu conciencia</h3>
-        <!-- Sección con iconos -->
-        <div class="seccionIconos">
-            <div class="icono">
-                <img src="static/imagenes/hojita.png">
-                <h4>EcoBits</h4>
-                <p>Ganá Ecobits</br>por devolver botellas</br>descartables</p>
-            </div>
-            <div class="icono">
-                <img src="static/imagenes/money.png">
-                <h4>Beneficios</h4>
-                <p>Usá tus Ecobits</br>para canjearlos por</br>productos y descuentos</p>
-            </div>
-            <div class="icono">
-                <img src="static/imagenes/recicla.png">
-                <h4>Reciclá</h4>
-                <p>Sumate a la</br>campaña para una</br>ciudad más limpia</p>
-            </div>
-            <div class="icono">
-                <img src="static/imagenes/regalo.png">
-                <h4>Ganá</h4>
-                <p>Premios y descuentos</br>exclusivos cuanto</br>más los usás</p>
-            </div>
-        </div>
+    <section>
+
+    {% include 'include/info.html' %}
+
     </section>
 
     <!-- ofertas destacadas -->
     <article>
-        {% include 'destacadas.html' %}
+        {% include 'include/destacadas.html' %}
     </article>
 
     <!-- saber más -->
@@ -108,11 +87,11 @@
     </div>
 <!-- Sociales template -->
 
-{% include 'sociales.html' %}
+{% include 'include/sociales.html' %}
 
     <!-- template footer -->
     <footer>
-        {% include 'footer.html' %}
+        {% include 'include/footer.html' %}
     </footer>
     </div>
 </body>
