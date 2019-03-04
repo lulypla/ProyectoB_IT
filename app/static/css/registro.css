@@ -24,6 +24,13 @@
 	grid-area: footer;
 }
 
+section, aside{
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+}
+
 @media(max-width: 799px){
 	.body{
 		display: grid;
