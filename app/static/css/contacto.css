@@ -11,11 +11,9 @@
 /* Grilla */
 .body{
 	display: grid;
-	grid-template-rows:1fr 3fr 1fr;
-	grid-template-columns: 4fr;
 	grid-template-areas:
 	"header header"
-	"formulario aside"
+	"section aside"
 	"section aside"
 	"sociales sociales"
 	"footer footer";
@@ -23,15 +21,13 @@
 .body header{
 	grid-area: header;
 }
-.body .formulario{
-	grid-area: formulario;
-}
 .body section{
 	grid-area: section;
 }
 .body aside{
 	grid-area: aside;
 }
+
 .body .sociales{
 	grid-area: sociales;
 }
@@ -39,18 +35,78 @@
 	grid-area: footer;
 }
 
+section, aside{
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.formContacto{
+	margin: 30px auto;
+    width: 70%;
+    max-width: 700px;
+    background: linear-gradient(rgb(154, 237, 158,0.7),rgb(87, 206, 51));
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid rgb(87, 206, 51, 0.7);
+}
+.seccion{
+	padding: 15px;
+}
+.seccion input, textarea{
+	float: right;
+	width: 70%;
+}
+label{
+	color: white;
+}
+textarea{
+	height: 80px;
+	overflow-y: scroll;
+}
+.inferior{
+	width: 100%;
+	float: right;
+	margin: 30px;
+}
+.inferior input{
+	float: right;
+	color: white;
+	background: green;
+	padding: 5px;
+}
+
+
+
 
 @media(max-width: 799px){
 	.body{
 		display: grid;
 		grid-template-areas:
-		"header"
-		"formulario" 
+		"header" 
 		"section"
-		"aside"
 		"aside"
 		"sociales"
 		"footer";
 		margin:0px;
+	}
+	.formContacto{
+		margin: 10px auto;
+	}
+
+	.formContacto, aside, article{
+		width: 95%;
+	}
+	.formContacto label, .formContacto a{
+		font-size: 13px;
+	}
+	article{
+		margin: 0 auto;
+	}
+	.seccion input, textarea{
+		width: 75%;
+	}
 
 	}
