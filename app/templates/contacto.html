@@ -16,13 +16,53 @@
             
     </header>
 
-    <div class="formulario"></div>
+    <section>
+
+
+        <form action="#" method="post" class="formContacto">
+
+        <div class="seccion">
+            <label for="name">
+                Nombre:
+            </label>
+            <input type="text" name="name" placeholder="Nombre" required>
+        </div>
+
+        <div class="seccion">
+            <label for="email">
+                Émail:
+            </label>
+            <input type="text" name="email" placeholder="Correo electrónico" required>
+        </div>
+
+        <div class="seccion">
+            <label for="tel">
+                Teléfono:
+            </label>
+            <input type="text" name="teléfono" placeholder="Teléfono de contacto" required>
+        </div>
+
+        <div class="seccion">
+            <label for="mensaje">
+                Mensaje:
+            </label>
+            <textarea name="mensaje" placeholder="Escriba su mensaje" required></textarea>
+        </div>
+
+        <div class="inferior">
+            <input type="submit" value="Enviar" id="boton">
+        </div>
+                      
+        </form>
+
+</section>
+
     
-    <section></section>
 
     <aside>
         {% include 'include/destacadas.html' %}
     </aside>
+
 
     <!-- Sociales template -->
 

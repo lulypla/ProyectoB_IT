@@ -36,9 +36,8 @@ section, aside, article{
 
 .formIngreso{
 	margin: 30px auto;
-    width: 70%;
-    max-width: 500px;
-    background: linear-gradient(rgb(154, 237, 158,0.7),rgb(87, 206, 51));
+    width: 50%;
+    background: linear-gradient(rgb(154, 237, 158),rgb(87, 206, 51));
     padding: 10px 20px;
     box-sizing: border-box;
     border-radius: 10px;
