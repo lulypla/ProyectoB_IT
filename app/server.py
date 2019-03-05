@@ -16,22 +16,20 @@ mydb = mysql.connector.connect(host='remotemysql.com', database='0fEBhWrqlk', us
 mycursor = mydb.cursor()
 
 
-mycursor.execute("SELECT * FROM Cliente")
-row_headers=[x[0] for x in mycursor.description]
-rows = mycursor.fetchall()
-json_data=[]
-for result in rows:
-     #if isinstance(result, datetime.datetime):
-     #    fecha = result
-     #    fecha.strftime('%m/%d/%Y')
-     #    print (fecha)
-     #    json_data.append(dict(zip(row_headers,fecha)))
-     #else:   
-     #   json_data.append(dict(zip(row_headers,result)))
-    print (result)#(json.dumps(json_data))
-
-
-
+#Esto es para usar en el list clientes
+# ycursor.execute("SELECT * FROM Cliente")
+#ow_headers=[x[0] for x in mycursor.description]
+#ows = mycursor.fetchall()
+#son_data=[]
+#or result in rows:
+#    #if isinstance(result, datetime.datetime):
+#    #    fecha = result
+#    #    fecha = datetime.strptime(fecha, "%d-%m-%Y") #fecha.strftime('%m/%d/%Y') 
+#    #    print (fecha)
+#    #    json_data.append(dict(zip(row_headers,fecha)))
+#    #else:   
+#    #   json_data.append(dict(zip(row_headers,result)))
+#   print (result)#(json.dumps(json_data))
 
 @app.route('/', methods=['GET','POST'])
 def index():
@@ -64,10 +62,41 @@ def faq():
 	# preguntas frecuentes 
     return render_template('faq.html')
 
-@app.route('/ingresar', methods=['GET','POST'])
+@app.route('/ingresar', methods=['GET'])
 def ingresar():
-    # ingresar 
-    return render_template('ingresar.html')
+      return render_template('ingresar.html')
+
+@app.route('/ingresar', methods=['POST'])
+def login():
+    email = request.form['email']
+    password = request.form['password']
+    usuarioNoRegistrado = "Usuario no registrado"
+    mycursor.execute( """
+        SELECT * 
+        FROM Usuario 
+        WHERE email = %s
+        """, [email]) 
+    rows = mycursor.fetchall()
+    print (rows)
+    if not rows:
+        return render_template('registro.html',email = email)
+    elif rows[0][2] != password: 
+        return redirect(url_for('ingresar'))
+    else:    
+        return render_template('ofertas.html', email  = email)
+   #Esto lo deje por si queremos usuar lo de las sesiones
+    #session['user_name'] = data['user_name']
+    #session['messages'] = data['messages']
+    #session['password'] = passwd
+    #session['email'] = email
+    #session['friends'] = data['friends']
+    
+    # nombre = request.form['nombre']
+    # apellido = request.form['apellido']
+    # session['nombre'] = nombre
+    # session['apellido'] = apellido
+    #return  return render_template('ofertas.html', request.for['name'])
+
 
 @app.route('/registro', methods=['GET','POST'])
 def registro():
