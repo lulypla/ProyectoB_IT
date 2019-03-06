@@ -1,8 +1,8 @@
 <!--- Botones dinamicos del menu princiupal -->
 {% block content %}
 <!-- Estado de los botones dinamicos que dependen del inicio de sesion -->
-{% if session %}
-<a href="#">session['email']</a>
+{% if session['nombre'] and session['nombre'] != ''%}
+<span>{{session['nombre']}}</span>
 <input type="submit" name="panel" value="Mi panel">
 {% else %}
 <input type="submit" name="acceso" value="Ingresar" onclick="window.location='ingresar';"/>

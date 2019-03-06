@@ -11,6 +11,8 @@ import datetime
 app = Flask(__name__)
 import mysql.connector
 
+app.secret_key = 'AVerSiFuncionaConEstaMierda'
+
 mydb = mysql.connector.connect(host='remotemysql.com', database='0fEBhWrqlk', user='0fEBhWrqlk', password='ecobits123')
  
 mycursor = mydb.cursor()
@@ -33,6 +35,7 @@ mycursor = mydb.cursor()
 
 @app.route('/', methods=['GET','POST'])
 def index():
+    session['messages'] = ''
 	# el servidor arranca con esta página raiz
     return render_template('index.html')
 
@@ -64,7 +67,12 @@ def faq():
 
 @app.route('/ingresar', methods=['GET'])
 def ingresar():
-      return render_template('ingresar.html')
+    if session['messages'] and session['messages'] != '' :
+        #msj =  session['messages']
+        #session['messages'] = ''
+        return render_template('ingresar.html')
+    else:
+        return render_template('ingresar.html', msj = '')   
 
 @app.route('/ingresar', methods=['POST'])
 def login():
@@ -79,24 +87,14 @@ def login():
     rows = mycursor.fetchall()
     print (rows)
     if not rows:
-        return render_template('registro.html',email = email)
-    elif rows[0][2] != password: 
+        session['messages'] = 'El usuario no existe.'
         return redirect(url_for('ingresar'))
-    else:    
+    elif rows[0][2] != password: 
+        session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
+        return redirect(url_for('ingresar'))
+    else:   
+        session['nombre'] = nombre =  rows[0][1]
         return render_template('ofertas.html', email  = email)
-   #Esto lo deje por si queremos usuar lo de las sesiones
-    #session['user_name'] = data['user_name']
-    #session['messages'] = data['messages']
-    #session['password'] = passwd
-    #session['email'] = email
-    #session['friends'] = data['friends']
-    
-    # nombre = request.form['nombre']
-    # apellido = request.form['apellido']
-    # session['nombre'] = nombre
-    # session['apellido'] = apellido
-    #return  return render_template('ofertas.html', request.for['name'])
-
 
 @app.route('/registro', methods=['GET','POST'])
 def registro():

@@ -1,6 +1,6 @@
 <!-- Estado de los botones dinamicos que dependen del inicio de sesion -->
-{% if session %}
-<a href="#">session['usuario']</a>
+{% if  'email' in session %}
+<a href="#">{{session['email']}}</a>
 <input type="submit" name="panel" value="Mi panel">
 {% else %}
 <input type="submit" name="acceso" value="Ingresar">
