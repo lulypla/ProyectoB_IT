@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+    <head>
+        <meta charset="UTF-8">
+        <title>Regístrate, ¡Es gratis!</title>
+        <link rel="stylesheet" href="static/css/signup.css">
+    </head>
+    <body>
+        <header>
+            <h1>Registro</h1>
+        </header>
+        <form  action="/signup_usuario" method="GET" >
+            <input name="tipo" type="submit" class="botones" value="Soy usuario" name="signup_usuario"/><br>
+        </form>
+        <form  action="/signup_empresa" method="GET" >
+            <input name="tipo" type="submit" class="botones" value="Soy empresa" name="signup_empresa"/><br>
+        </form>
+                
+        <p>Al registrarme, acepto la <a href="politica_de_privacidad.html">Política de privacidad</a> y los <br>
+           <a href="terminos_del_servicio.html">Términos del servicio.</a></p><br>
+        <p>¿Ya estás registrado? Haz clic <a href="login.html">aquí.</a></p>
+    </body>
+</html>

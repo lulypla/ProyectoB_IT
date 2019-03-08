@@ -46,3 +46,7 @@ form {
 #fecha_nac {
     width: 130px;
 }
+
+.none{
+    display: none;
+}

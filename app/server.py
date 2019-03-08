@@ -96,11 +96,20 @@ def login():
         session['nombre'] = nombre =  rows[0][1]
         return render_template('ofertas.html', email  = email)
 
-@app.route('/registro', methods=['GET','POST'])
+@app.route('/signup_seleccion', methods=['GET','POST'])
 def registro():
     # registro 
-    return render_template('registro.html')
+    return render_template('signup_seleccion.html')
 
+@app.route('/signup_usuario', methods=['GET'])
+def registroUsuario():
+    # registro 
+    return render_template('signup_usuario.html')
+
+@app.route('/signup_empresa', methods=['GET'])
+def registroEmpresa():
+    # registro 
+    return render_template('signup_empresa.html')
 
 # levanta el servidor con el método run()
 if __name__ == '__main__':
