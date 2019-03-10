@@ -140,16 +140,12 @@ def registroUsuarioPost():
         idUsuario = rows[0][0]
         idUsuario = idUsuario + 1
         #hago el insert en la tabla usuario
-        mycursor.execute( """
-        INSERT INTO Usuario (idUsuario, email, password)
-        VALUES ( %s,  %s,  %s) """, { idUsuario,  [request.form.get('email')], [request.form.get('password')]}) 
+        sql = "INSERT INTO Usuario (idUsuario, email, password) VALUES ("+str(idUsuario)+",'"+[request.form.get('email')][0]+"','"+[request.form.get('password')][0]+"')"
+        mycursor.execute(sql)
         #hago el insert en la tabla cliente
-        #tipo de documento no lo estoy registrando porque me falto crear esa columna, lo hago despues 
-        mycursor.execute( """
-        INSERT INTO Cliente (idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac,ecobit)
-        VALUES ( %s, %s, %s, %s, %s, %s, %s,0) 
-        """, {idUsuario, [request.form.get('nombre')], [request.form.get('apellido')],  [request.form.get('nro_documento')],  [request.form.get('sexo')],  [request.form.get('tel')], [request.form.get('fecha_nac')]}) 
-        rows = mycursor.fetchall()
+        sql = "INSERT INTO Cliente (idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac,tipoDoc, ecobit) VALUES ("+str(idUsuario)+",'"+[request.form.get('nombre')][0]+"','"+[request.form.get('apellido')][0]+"','"+ [request.form.get('nro_documento')][0]+"','"+ [request.form.get('sexo')][0]+"','"+  [request.form.get('tel')][0]+"','"+ [request.form.get('fecha_nac')][0]+"','"[request.form.get('tipo_doc')][0]+"','"+str(0)+")"
+        mycursor.execute(sql)
+       
         return render_template('ingresar.html')
     else:
         session['messages'] = 'El email ya está en uso.' #hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
