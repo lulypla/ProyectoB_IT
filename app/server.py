@@ -106,6 +106,57 @@ def registroUsuario():
     # registro 
     return render_template('signup_usuario.html')
 
+@app.route('/signup_usuario', methods=['POST'])
+def registroUsuarioPost():
+    #vacio mensaje de session
+    session['messages'] = ''
+    # check campos vacios
+    missing = []
+    fields = [ 'nombre' , 'apellido', 'tipo_doc', 'nro_documento','fecha_nac', 'tel','email', 'repetir_email', 'password', 'repetir_password']
+    for field in fields:
+        value = request.form.get(field, None)
+        if value is None:
+            missing.append(field)
+        #sino validar si es ci que sean solo numeros y cantidad 8 (esto lo deberia hacer un javascript antes igual)
+    if missing:
+        return render_template('signup_usuario.html')
+
+    #ESTO FALTA check email - repetir_email y pass y repetir pass iguales   (esto lo deberia hacer un javascript antes igual, el pass capaz que no, solo aca , a definir)
+    
+    #Me fijo que no haya ningun usuario con ese email
+    mycursor.execute( """
+        SELECT * 
+        FROM Usuario 
+        WHERE email = %s
+        """, [request.form.get('email')]) 
+    rows = mycursor.fetchall()
+    if not rows:
+        #obtengo el id del ultimo insert
+        mycursor.execute( """
+        SELECT idUsuario 
+        FROM Usuario ORDER BY idUsuario DESC LIMIT 1
+        """ ) 
+        rows = mycursor.fetchall()
+        idUsuario = rows[0][0]
+        idUsuario = idUsuario + 1
+        #hago el insert en la tabla usuario
+        mycursor.execute( """
+        INSERT INTO Usuario (idUsuario, email, password)
+        VALUES ( %s,  %s,  %s) """, { idUsuario,  [request.form.get('email')], [request.form.get('password')]}) 
+        #hago el insert en la tabla cliente
+        #tipo de documento no lo estoy registrando porque me falto crear esa columna, lo hago despues 
+        mycursor.execute( """
+        INSERT INTO Cliente (idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac,ecobit)
+        VALUES ( %s, %s, %s, %s, %s, %s, %s,0) 
+        """, {idUsuario, [request.form.get('nombre')], [request.form.get('apellido')],  [request.form.get('nro_documento')],  [request.form.get('sexo')],  [request.form.get('tel')], [request.form.get('fecha_nac')]}) 
+        rows = mycursor.fetchall()
+        return render_template('ingresar.html')
+    else:
+        session['messages'] = 'El email ya está en uso.' #hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
+        return render_template('signup_usuario.html')
+    
+
+
 @app.route('/signup_empresa', methods=['GET'])
 def registroEmpresa():
     # registro 

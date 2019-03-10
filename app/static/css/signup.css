@@ -46,3 +46,13 @@ a.botones{
 #fecha_nac {
     width: 130px;
 }
+
+.back{
+    height: 50px;
+    width: 50px;
+}
+
+form{
+    width: 50%;
+    margin-left: 25%;
+}
