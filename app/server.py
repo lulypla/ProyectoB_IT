@@ -13,7 +13,7 @@ import mysql.connector
 
 app.secret_key = 'AVerSiFuncionaConEstaMierda'
 
-mydb = mysql.connector.connect(host='remotemysql.com', database='0fEBhWrqlk', user='0fEBhWrqlk', password='ecobits123')
+mydb = mysql.connector.connect(host='remotemysql.com', database='AqoOvh1tJq', user='AqoOvh1tJq', password='IWv4eTB3oe')
  
 mycursor = mydb.cursor()
 
@@ -143,9 +143,14 @@ def registroUsuarioPost():
         sql = "INSERT INTO Usuario (idUsuario, email, password) VALUES ("+str(idUsuario)+",'"+[request.form.get('email')][0]+"','"+[request.form.get('password')][0]+"')"
         mycursor.execute(sql)
         #hago el insert en la tabla cliente
-        sql = "INSERT INTO Cliente (idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac,tipoDoc, ecobit) VALUES ("+str(idUsuario)+",'"+[request.form.get('nombre')][0]+"','"+[request.form.get('apellido')][0]+"','"+ [request.form.get('nro_documento')][0]+"','"+ [request.form.get('sexo')][0]+"','"+  [request.form.get('tel')][0]+"','"+ [request.form.get('fecha_nac')][0]+"','"[request.form.get('tipo_doc')][0]+"','"+str(0)+")"
+        sql = "INSERT INTO Cliente (idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac, ecobit, tipoDoc) VALUES ("+str(idUsuario)+" ,'"+[request.form.get('nombre')][0]+"' , '"+[request.form.get('apellido')][0]+"' , '"+ [request.form.get('nro_documento')][0]+"' , '"+ [request.form.get('sexo')][0]+"' , '"+  [request.form.get('tel')][0]+"' , '"+ str([request.form.get('fecha_nac')][0])+"' , "+str(0)+" , '"+[request.form.get('tipo_doc')][0]+ "')"
         mycursor.execute(sql)
-       
+        mycursor.execute( """
+        SELECT idUsuario 
+        FROM Usuario
+        """ ) 
+        rows = mycursor.fetchall()
+        print(rows)
         return render_template('ingresar.html')
     else:
         session['messages'] = 'El email ya está en uso.' #hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
