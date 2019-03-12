@@ -1,60 +1,145 @@
 <!DOCTYPE html>
 <html lang="es-ES">
-    <head>
-        <meta charset="UTF-8">
-        <title>EcoBits - Regístrate, ¡Es gratis!</title>
-        <link rel="stylesheet" href="/static/css/signup.css">
-        <script type="text/javascript"> 
-            function Validate(objForm) {
-                var email = objForm[input = "email"].value;
-                var repetir_email = objForm[input = "repetir_email"].value; 
-                var password = objForm[input = "password"].value; 
-                var repetir_password = objForm[input = "repetir_password"].value; 
+  <head>
+    <meta charset="UTF-8" />
+    <title>EcoBits - Regístrate, ¡Es gratis!</title>
+    <link rel="stylesheet" href="/static/css/signup.css" />
+    <script type="text/javascript" src="../static/js/validaciones.js"></script>
+    <script type="text/javascript">
+      const Validate = objForm => {
+        var email = objForm[(input = "email")].value;
+        var repetir_email = objForm[(input = "repetir_email")].value;
+        var password = objForm[(input = "password")].value;
+        var repetir_password = objForm[(input = "repetir_password")].value;
 
-                if (email === repetir_email) {
-                    if (password === repetir_password ) {
-                        return true;
-                    } else {
-                       alert('contraseñas no coinciden')
-                        return false;
-                    }         
-                } else {
-                    alert('email no coinciden')
-                    return false;
-                }
-            }
-        </script>
-    </head>
-    <body>
-        <header>
-          <h3>{{session['messages']}}</h3>  
-          <a  class="back" href="javascript:history.go(-1)"><img src="static/imagenes/left-arrow.png" class="back"></a>  <h1>Registro</h1>
-        </header>
-        <form action="signup_usuario" method="POST" onsubmit="return Validate(this);">
-            Nombre:<br>
-            <input class="input" name="nombre" type="text" required="required" placeholder="Escribe tu nombre"/><br>
-            Apellido:<br>
-            <input class="input" name="apellido" type="text" required="required" placeholder="Escribe tu apellido" /><br>
-            Documento: <input name="tipo_doc" type="radio" value="C" required="required">CI</input> <input name="tipo_doc" type="radio" value="P">Pasaporte</input><br>
-            <input class="input" name="nro_documento" type="text" required="required" placeholder="Escribe tu número de documento"></input><br>
-            Fecha de nacimiento: <input id="fecha_nac" class="input" name="fecha_nac" type="date" required="required"></input><br>
-            Teléfono / Celular:<br>
-            <input class="input" name="tel" type="tel" required="required" placeholder="Escribe tu número de teléfono / celular"></input><br>
-            Sexo: <input name="sexo" type="radio" value="F" required="required">Femenino</input> <input name="sexo" type="radio" value="M">Masculino</input> <input name="sexo" type="radio" value="O">Otro</input><br><br>
-            Correo electrónico:<br>
-            <input class="input" name="email" type="email" required="required" placeholder="Escribe tu dirección de correo electrónico"/><br>
-            Repetir correo electrónico:<br>
-            <input class="input" name="repetir_email" type="email" required="required" placeholder="Repite tu dirección de correo electrónico"/><br>
-            Contraseña:<br>
-            <input class="input" name="password" type="password" required="required" placeholder="Escribe una contraseña"/><br>
-            Repetir contraseña:<br>
-            <input class="input" name="repetir_password" type="password" required="required" placeholder="Repite tu contraseña"/><br>
-            <input id="registrarse" name="registrarse" type="submit" class="botones" value="Registrarse"/>
-            
-        </form>
-        <p>Al registrarme, acepto la <a href="politica_de_privacidad.html">Política de privacidad</a> y los <br>
-            <a href="terminos_del_servicio.html">Términos del servicio.</a></p><br>
-        <p>O bien, regístrese con <a href="sesion_google.html">Google</a> o <a href="sesion_facebook.html">Facebook.</a></p>
-        <p>¿Ya estás registrado? Haz clic <a href="login.html">aquí.</a></p>
-    </body>
+        if (email === repetir_email) {
+          if (password === repetir_password) {
+            return true;
+          } else {
+            alert("contraseñas no coinciden");
+            return false;
+          }
+        } else {
+          alert("email no coinciden");
+          return false;
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <header>
+      <h3>{{ session["messages"] }}</h3>
+      <a class="back" href="javascript:history.go(-1)"
+        ><img src="static/imagenes/left-arrow.png" class="back"
+      /></a>
+      <h1>Registro</h1>
+    </header>
+    <form
+      action="signup_usuario"
+      method="POST"
+      onsubmit="return Validate(this)"
+    >
+      <p>Nombre:<br /></p>
+      <input
+        class="input"
+        name="nombre"
+        type="text"
+        required="required"
+        placeholder="Escribe tu nombre"
+      /><br />
+      <p>Apellido:</p>
+      <br />
+      <input
+        class="input"
+        name="apellido"
+        type="text"
+        required="required"
+        placeholder="Escribe tu apellido"
+      /><br />
+      <p>Documento:</p>
+      <input name="tipo_doc" type="radio" value="C" required="required" />
+      <input name="tipo_doc" type="radio" value="P" />Pasaporte<br />
+      <input
+        class="input"
+        name="nro_documento"
+        type="text"
+        required="required"
+        placeholder="Escribe tu número de documento"
+      /><br />
+      <p>Fecha de nacimiento:</p>
+      <input
+        id="fecha_nac"
+        class="input"
+        name="fecha_nac"
+        type="date"
+        required="required"
+      /><br />
+      <p>Teléfono / Celular:<br /></p>
+      <input
+        class="input"
+        name="tel"
+        type="tel"
+        required="required"
+        placeholder="Escribe tu número de teléfono / celular"
+      />
+      <br />
+      <p>Sexo:</p>
+      <input name="sexo" type="radio" value="F" required="required" />Femenino
+      <input name="sexo" type="radio" value="M" />Masculino
+      <input name="sexo" type="radio" value="O" />Otro <br /><br />
+      <p>Correo electrónico:<br /></p>
+      <input
+        class="input"
+        name="email"
+        type="email"
+        id="email"
+        required
+        placeholder="Escribe tu dirección de correo electrónico"
+      /><br />
+      <p>Repetir correo electrónico:<br /></p>
+      <input
+        onblur="console.log(iguales(this.value, document.getElementById('email').value ))"
+        class="input"
+        name="repetir_email"
+        type="email"
+        required="required"
+        placeholder="Repite tu dirección de correo electrónico"
+      /><br />
+      <p>Contraseña:<br /></p>
+      <input
+        class="input"
+        name="password"
+        type="password"
+        required="required"
+        placeholder="Escribe una contraseña"
+      /><br />
+      <p>Repetir contraseña:<br /></p>
+      <input
+        class="input"
+        name="repetir_password"
+        type="password"
+        required="required"
+        placeholder="Repite tu contraseña"
+      /><br />
+      <input
+        id="registrarse"
+        name="registrarse"
+        type="submit"
+        class="botones"
+        value="Registrarse"
+      />
+    </form>
+    <p>
+      Al registrarme, acepto la
+      <a href="politica_de_privacidad.html">Política de privacidad</a> y los
+      <br />
+      <a href="terminos_del_servicio.html">Términos del servicio.</a>
+    </p>
+    <br />
+    <p>
+      O bien, regístrese con <a href="sesion_google.html">Google</a> o
+      <a href="sesion_facebook.html">Facebook.</a>
+    </p>
+    <p>¿Ya estás registrado? Haz clic <a href="ingresar">aquí.</a></p>
+  </body>
 </html>
