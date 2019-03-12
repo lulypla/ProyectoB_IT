@@ -24,8 +24,3 @@ function password(pass1, pass2) {
   // No se si quieres tambien alguna validacion por largo o elemntos de seguridad.
   return iguales(pass1, pass2);
 }
-
-module.exports = {
-  cedula,
-  password
-};
