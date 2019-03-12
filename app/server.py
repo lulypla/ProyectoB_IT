@@ -145,12 +145,8 @@ def registroUsuarioPost():
         #hago el insert en la tabla cliente
         sql = "INSERT INTO Cliente (idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac, ecobit, tipoDoc) VALUES ("+str(idUsuario)+" ,'"+[request.form.get('nombre')][0]+"' , '"+[request.form.get('apellido')][0]+"' , '"+ [request.form.get('nro_documento')][0]+"' , '"+ [request.form.get('sexo')][0]+"' , '"+  [request.form.get('tel')][0]+"' , '"+ str([request.form.get('fecha_nac')][0])+"' , "+str(0)+" , '"+[request.form.get('tipo_doc')][0]+ "')"
         mycursor.execute(sql)
-        mycursor.execute( """
-        SELECT idUsuario 
-        FROM Usuario
-        """ ) 
-        rows = mycursor.fetchall()
-        print(rows)
+        #actualizo en la base los insert
+        mydb.commit()
         return render_template('ingresar.html')
     else:
         session['messages'] = 'El email ya está en uso.' #hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
