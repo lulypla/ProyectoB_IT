@@ -6,6 +6,14 @@
     <link rel = "stylesheet" href = "static/css/estilos.css">
     <link rel = "stylesheet" href = "static/css/ofertas.css">
     <link rel = "stylesheet" href = "static/css/footer.css">
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta name = "viewport" content = "width-device-width, user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1">
 <link rel="icon" type="image/png" href="static/imagenes/icon.png">
 </head>
@@ -17,7 +25,23 @@
     </header>
     <section>
 
-        <h1> {{email}} si esta en la base muestro ofertas </h1>
+        <h1>OFERTAS!!</h1> 
+            
+               
+                <div class="container-fluid" style="display: flex">
+                        {% for oferta in ofertas %}
+                       
+                        <div class="card" style="width: 18rem; margin: 20px; border: indigo solid 2px" class="col-4">
+                                <img class="card-img-top" src="/static/imagenes/playa.png" alt="Card image cap">
+                                <div class="card-body">
+                                  <h5 class="card-title">titulo {{oferta[2]}}</h5>
+                                  <p class="card-text">descripcion {{oferta[3]}}</p>
+                                </div>
+                                   <a href="#" class="card-link">Ampliar o canjear, definir</a>
+                               
+                        </div>
+                        {% endfor %}
+                </div>
     </section>
     <article></article>
     <aside></aside>

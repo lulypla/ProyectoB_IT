@@ -40,10 +40,16 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/ofertas', methods=['GET','POST'])
+@app.route('/ofertas', methods=['GET'])
 def ofertas():
 	# pagina ofertas
-    return render_template('ofertas.html')
+    mycursor.execute( """
+        SELECT * 
+        FROM Oferta
+        """) 
+    rows = mycursor.fetchall()
+    print (rows)
+    return render_template('ofertas.html', ofertas = rows)
 
 @app.route('/centros', methods=['GET','POST'])
 def centros():
@@ -76,6 +82,7 @@ def ingresar():
 
 @app.route('/ingresar', methods=['POST'])
 def login():
+    session['messages'] = ''
     email = request.form['email']
     password = request.form['password']
     usuarioNoRegistrado = "Usuario no registrado"
@@ -140,7 +147,7 @@ def registroUsuarioPost():
         idUsuario = rows[0][0]
         idUsuario = idUsuario + 1
         #hago el insert en la tabla usuario
-        sql = "INSERT INTO Usuario (idUsuario, email, password) VALUES ("+str(idUsuario)+",'"+[request.form.get('email')][0]+"','"+[request.form.get('password')][0]+"')"
+        sql = "INSERT INTO Usuario (idUsuario, email, password) VALUES ("+str(idUsuario)+",'"+[request.form.get('email')][0]+"','"+[request.form.get('password')][0]+"',"+str(1)+")"
         mycursor.execute(sql)
         #hago el insert en la tabla cliente
         sql = "INSERT INTO Cliente (idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac, ecobit, tipoDoc) VALUES ("+str(idUsuario)+" ,'"+[request.form.get('nombre')][0]+"' , '"+[request.form.get('apellido')][0]+"' , '"+ [request.form.get('nro_documento')][0]+"' , '"+ [request.form.get('sexo')][0]+"' , '"+  [request.form.get('tel')][0]+"' , '"+ str([request.form.get('fecha_nac')][0])+"' , "+str(0)+" , '"+[request.form.get('tipo_doc')][0]+ "')"
