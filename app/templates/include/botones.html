@@ -1,9 +1,10 @@
 <!--- Botones dinamicos del menu princiupal -->
 {% block content %}
 <!-- Estado de los botones dinamicos que dependen del inicio de sesion -->
-{% if session['nombre'] and session['nombre'] != ''%}
-<span>{{session['nombre']}}</span>
-<input type="submit" name="panel" value="Mi panel">
+{% if session['email'] and session['email'] != ''%}
+<span class="emailMenu">{{session['email']}}</span>
+<a class="miPanelMenu" href="/update_usuario" value="Mi panel">Mi panel</a>
+<a class="cerrarSesionMenu" href="/cerrarSesion">Cerrar Session</a>
 {% else %}
 <input type="submit" name="acceso" value="Ingresar" onclick="window.location='ingresar';"/>
 <input type="submit" name="registro" value="Registrarse" onclick="window.location='signup_seleccion';"/>

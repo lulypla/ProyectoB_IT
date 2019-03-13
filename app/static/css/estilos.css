@@ -153,6 +153,12 @@ header .template1 input:nth-child(2){
     width: 23%;
 }
 
+#registrarseUpdate{
+    display: inline-block;
+    margin: 10% 0;
+    background-color: darkgreen;
+    color: #eee;
+}
 
 /* pantallas pequeñas*/
 @media (max-width: 768px){
@@ -215,3 +221,25 @@ header .template1 input:nth-child(2){
   
 }
 
+.emailMenu{
+width: 50px;
+font-size: 10px;
+background-color: darkgreen;
+border-radius: 5px;
+color: black
+
+}
+.miPanelMenu{
+    width: 50px;
+    font-size: 10px;
+    background-color: darkgreen;
+    border-radius: 5px;
+    color: #eee;
+}
+.cerrarSesionMenu{
+    width: 50px;
+    font-size: 10px;
+    background-color: darkgreen;
+    border-radius: 5px;
+    color: grey;
+}

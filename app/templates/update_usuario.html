@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>EcoBits</title>
+    <link rel = "stylesheet" href = "static/css/estilos.css">
+    <link rel = "stylesheet" href = "static/css/registro.css">
+    <link rel = "stylesheet" href = "static/css/footer.css">
+<meta name = "viewport" content = "width-device-width, user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1">
+<link rel="icon" type="image/png" href="static/imagenes/icon.png">
+<link rel="stylesheet" href="/static/css/signup.css" />
+<script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="../static/js/validaciones.js"></script>
+<script type="text/javascript">
+     $(document).ready(function(){
+       
+        $.ajax({
+          url: '/update_usuario_getDATA',
+          type: 'GET',
+          dataType: 'json',
+          success: function(result){
+            $("#nombreUpdate").val(result.nombre);
+            $("#apellidoUpdate").val(result.apellido);
+            $('input[name=tipo_doc][value='+result.tipoDoc+']').attr("checked", "checked");
+            $("#nro_documentoUpdate").val(result.documento);
+            $("#fecha_nacUpdate").val(result.fechaDeNac);
+            $("#telUpdate").val(result.celular);
+            $('input[name=sexo][value='+result.sexo+']').attr("checked", "checked");
+            $("#emailUpdate").val(result.email);            
+          },
+          error: function(result){
+            $("#mensajeUpdate").append('No se pudo obtener datos');
+          }
+        });
+      })
+
+
+
+
+
+
+  const Validate = objForm => {
+    var email = objForm[(input = "email")].value;
+    var repetir_email = objForm[(input = "repetir_email")].value;
+    var password = objForm[(input = "password")].value;
+    var repetir_password = objForm[(input = "repetir_password")].value;
+
+    if (email === repetir_email) {
+      if (password === repetir_password) {
+        return true;
+      } else {
+        alert("contraseñas no coinciden");
+        return false;
+      }
+    } else {
+      alert("email no coinciden");
+      return false;
+    }
+  };
+</script>
+</head>
+<body>
+<div class="body">
+    <header>
+       {% include 'include/menu.html' %}
+            
+    </header>
+    <section>
+        <header>
+          
+            <h1>Mi perfil</h1>
+            <h3 id="mensajeUpdate"></h3>
+            <h3> {{session['mensaje']}}</h3>
+          </header>
+          <form
+            action="update_usuario"
+            method="POST"
+            onsubmit="return Validate(this)"
+          >
+            <p>Nombre:</p>
+            <input
+              id="nombreUpdate"
+              class="input"
+              name="nombre"
+              type="text"
+              required="required"
+              placeholder="Escribe tu nombre"
+            />
+            <p>Apellido:</p>
+           
+            <input
+              id="apellidoUpdate"
+              class="input"
+              name="apellido"
+              type="text"
+              required="required"
+              placeholder="Escribe tu apellido"
+            />
+            <p>Documento:</p>
+            <input name="tipo_doc" type="radio" value="C" required="required" />Documento
+            <input name="tipo_doc" type="radio" value="P" />Pasaporte
+            <input
+              id="nro_documentoUpdate"
+              class="input"
+              name="nro_documento"
+              type="text"
+              required="required"
+              placeholder="Escribe tu número de documento"
+            />
+            <p>Fecha de nacimiento:</p>
+            <input
+              id="fecha_nacUpdate"
+              class="input"
+              name="fecha_nac"
+              type="date"
+              required="required"
+            />
+            <p>Teléfono / Celular:</p>
+            <input
+              id="telUpdate"
+              class="input"
+              name="tel"
+              type="tel"
+              required="required"
+              placeholder="Escribe tu número de teléfono / celular"
+            />
+            
+            <p>Sexo:</p>
+            <input name="sexo" type="radio" value="F" required="required" />Femenino
+            <input name="sexo" type="radio" value="M" />Masculino
+            <input name="sexo" type="radio" value="O" />Otro 
+            <p>Correo electrónico:</p>
+            <input
+              id="emailUpdate"
+              class="input"
+              name="email"
+              type="email"
+              id="email"
+              required
+              placeholder="Escribe tu dirección de correo electrónico"
+            />
+            <p>Repetir correo electrónico:</p>
+            <input
+              onblur="console.log(iguales(this.value, document.getElementById('email').value ))"
+              id="repetirEmailUpdate"
+              class="input"
+              name="repetir_email"
+              type="email"
+              required="required"
+              placeholder="Repite tu dirección de correo electrónico"
+            />
+            <p>Contraseña:</p>
+            <input
+              id="passwordUpdate"
+              class="input"
+              name="password"
+              type="password"
+              required="required"
+              placeholder="Escribe una contraseña"
+            />
+            <p>Repetir contraseña:</p>
+            <input
+              id="repetirPasswordUpdate"
+              class="input"
+              name="repetir_password"
+              type="password"
+              required="required"
+              placeholder="Repite tu contraseña"
+            />
+            <input
+              id="registrarseUpdate"
+              name="registrarse"
+              type="submit"
+              class="botones"
+              value="Registrarse"
+            />
+          </form>
+    </section>
+    <aside>
+        {% include 'include/destacadas.html' %}
+    </aside>
+
+    <!-- Sociales template -->
+
+{% include 'include/sociales.html' %}
+    <!-- template footer -->
+    <footer>
+        {% include 'include/footer.html' %}
+    </footer>
+
+</div>
+</body>
+</html>

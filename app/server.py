@@ -48,7 +48,6 @@ def ofertas():
         FROM Oferta
         """) 
     rows = mycursor.fetchall()
-    print (rows)
     return render_template('ofertas.html', ofertas = rows)
 
 @app.route('/centros', methods=['GET','POST'])
@@ -73,12 +72,11 @@ def faq():
 
 @app.route('/ingresar', methods=['GET'])
 def ingresar():
-    if session['messages'] and session['messages'] != '' :
-        #msj =  session['messages']
-        #session['messages'] = ''
-        return render_template('ingresar.html')
+    if session:
+        msj =  session['messages']
+        return render_template('ingresar.html', msj = '')
     else:
-        return render_template('ingresar.html', msj = '')   
+        return render_template('ingresar.html')   
 
 @app.route('/ingresar', methods=['POST'])
 def login():
@@ -92,16 +90,16 @@ def login():
         WHERE email = %s
         """, [email]) 
     rows = mycursor.fetchall()
-    print (rows)
     if not rows:
         session['messages'] = 'El usuario no existe.'
         return redirect(url_for('ingresar'))
     elif rows[0][2] != password: 
         session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
         return redirect(url_for('ingresar'))
-    else:   
-        session['nombre'] = nombre =  rows[0][1]
-        return render_template('ofertas.html', email  = email)
+    else: 
+        session['email'] =  rows[0][1]
+        session['idUsuario'] =  rows[0][0]
+        return  redirect(url_for('ofertas'))
 
 @app.route('/signup_seleccion', methods=['GET','POST'])
 def registro():
@@ -165,6 +163,81 @@ def registroUsuarioPost():
 def registroEmpresa():
     # registro 
     return render_template('signup_empresa.html')
+
+@app.route('/update_usuario', methods=['GET'])
+def updateUsuario():
+    return render_template('update_usuario.html')
+
+@app.route('/update_usuario_getDATA', methods=['GET'])
+def getDataUsuario():
+    # consulto tabla cliente
+    idUsuario = session['idUsuario']
+    email = session['email'] 
+    mycursor.execute( """
+        SELECT * 
+        FROM Cliente 
+        WHERE idUsuario = %s
+        """, [idUsuario]) 
+    rows = mycursor.fetchall()
+   # idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac,ecobit, tipoDoc
+    data = {}
+    data['nombre'] = rows[0][1]
+    data['apellido'] =  rows[0][2]
+    data['documento'] =  rows[0][3]
+    data['sexo'] =  rows[0][4]
+    data['celular'] = rows[0][5]
+    data['fechaDeNac'] = rows[0][6]
+    data['tipoDoc'] =  rows[0][8]
+    data['email'] =  email
+    return json.dumps(data)
+
+@app.route('/update_usuario', methods=['POST'])
+def postUpdateUsuario():
+    #vacio mensaje de session
+    session['messages'] = ''
+    email = session['email']
+    idUsuario = session['idUsuario']
+    # check campos vacios
+    missing = []
+    fields = [ 'nombre' , 'apellido', 'tipo_doc', 'nro_documento','fecha_nac', 'tel','email', 'repetir_email', 'password', 'repetir_password']
+    for field in fields:
+        value = request.form.get(field, None)
+        if value is None:
+            missing.append(field)
+        #sino validar si es ci que sean solo numeros y cantidad 8 (esto lo deberia hacer un javascript antes igual)
+    if missing:
+        return redirect(url_for('update_usuario'))
+
+    #Me fijo que haya ningun usuario con ese email
+    mycursor.execute( """
+        SELECT * 
+        FROM Usuario 
+        WHERE email = %s
+        """, [email]) 
+    rows = mycursor.fetchall()
+    if rows:
+        password = [request.form.get('password')][0]
+        
+        #hago el update en la tabla Usuario
+        sql = "update Usuario set email = '"+[request.form.get('email')][0]+"', password = '"+[request.form.get('password')][0]+"' where idUsuario = "+str(idUsuario)+")"
+        mycursor.execute(sql)
+
+         #hago el insert en la tabla cliente
+        sql = "update Cliente set  nombre = '"+[request.form.get('nombre')][0]+"', apellido = '"+[request.form.get('apellido')][0]+"' ,ci = '"+ [request.form.get('nro_documento')][0]+"' ,sexo= '"+[request.form.get('sexo')][0]+"'  ,celular= '"+[request.form.get('tel')][0]+"' ,fecDeNac= '" +str([request.form.get('fecha_nac')][0])+"', tipoDoc = '"+ [request.form.get('tipo_doc')][0]+"' where idUsuario = "+str(idUsuario)+")"
+        mycursor.execute(sql)
+        #actualizo en la base los insert
+        mydb.commit()
+
+        return redirect(url_for('update_usuario'))
+    else:
+        session['messages'] = 'Fallo el update.' #hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
+        return redirect(url_for('update_usuario'))
+    
+@app.route('/cerrarSesion', methods=['GET'])
+def cerrarSesion():
+   
+   session.clear()
+   return render_template('index.html')
 
 # levanta el servidor con el método run()
 if __name__ == '__main__':
