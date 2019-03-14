@@ -5,7 +5,7 @@ import os
 import mysql.connector
 import pymysql
 from classes import *
-from flask import Flask, request, render_template, url_for, session, json, redirect
+from flask import Flask, request, render_template, url_for, session, json, redirect, flash
 import json
 import datetime
 
@@ -259,6 +259,17 @@ def postUpdateUsuario():
         return redirect(url_for('updateUsuario'))
 
 
+@app.route('/EliminarCuenta', methods=['GET'])
+def eliminarCuenta():
+    eliminar = session['email']
+    mycursor.execute(
+     """DELETE FROM Usuario WHERE email = %s """
+       ,[eliminar])
+    mydb.commit()
+    #flash('Cuenta Eliminada Satisfactoriamente')
+    return cerrarSesion()
+    
+    
 @app.route('/cerrarSesion', methods=['GET'])
 def cerrarSesion():
 
