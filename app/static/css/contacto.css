@@ -42,71 +42,98 @@ section, aside{
     margin: 10px 0;
 }
 
-.formContacto{
-	margin: 30px auto;
-    width: 70%;
-    max-width: 700px;
-    background: linear-gradient(rgb(154, 237, 158,0.7),rgb(87, 206, 51));
-    padding: 10px 20px;
-    box-sizing: border-box;
+.content-form {
+    background:linear-gradient(rgb(154, 237, 158),rgb(87, 206, 51));
+    color: #fff;
+    margin: 30px auto;
+    overflow: auto;
+    padding: 0px 5px;
+    width: 60%;
     border-radius: 10px;
-    border: 2px solid rgb(87, 206, 51, 0.7);
 }
-.seccion{
-	padding: 15px;
+.sub-title {
+    text-align: center;
+    color: white;
+    margin: 10px auto;
 }
-.seccion input, textarea{
-	float: right;
-	width: 70%;
+.sub-title:after {
+    content: "";
+    height: 2px;
+    background:white;
+    display: block;
+    margin: auto;
 }
-label{
-	color: white;
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid rgba(87, 206, 51, 0.36);
+    margin-bottom: 5px;
+} 
+.sub-form {
+    width: 100%;
+    background: green;
+    text-align: center;
+    padding: 5px 5px;
+    color: white;
 }
-textarea{
-	height: 80px;
-	overflow-y: scroll;
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+
 }
-.inferior{
+.width-4 {
+    width: 33.3%;
+}
+.width-6 {
+    width: 50%;
+}
+.width-12{
 	width: 100%;
-	float: right;
-	margin: 30px;
 }
-.inferior input{
-	float: right;
-	color: white;
-	background: green;
-	padding: 5px;
+#btn-enviar {
+    background: green;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    border: 1px solid darkgreen;
+    border-radius: 5px;
+    width: 150px;
+}
+.btn:hover {
+    background: green;
+    cursor: pointer;
 }
 
+@media (max-width: 799px){
 
+.body{
+	display: grid;
+	grid-template-areas:
+	"header"
+	"section"
+	"aside"
+	"sociales"
+	"footer";
+}
 
-
-@media(max-width: 799px){
-	.body{
-		display: grid;
-		grid-template-areas:
-		"header" 
-		"section"
-		"aside"
-		"sociales"
-		"footer";
-		margin:0px;
-	}
-	.formContacto{
-		margin: 10px auto;
-	}
-
-	.formContacto, aside, article{
-		width: 95%;
-	}
-	.formContacto label, .formContacto a{
-		font-size: 13px;
-	}
-	article{
-		margin: 0 auto;
-	}
-	.seccion input, textarea{
-		width: 75%;
-	}
-
-	}
+.content-form {
+    width: 95%; 
+    border-radius: 0px;
+}
+.width-6 {
+    width: 100%;
+    font-size: 1em;
+}
+.btn {
+    
+        width: 100%;
+}
+.sub-title{
+	font-size: 18px;
+}
+.sub-form{
+	font-size: 15px;
+}
+ 
+}
