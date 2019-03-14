@@ -34,35 +34,57 @@ section, aside, article{
     margin: 10px 0;
 }
 
-.formIngreso{
-	margin: 30px auto;
-    width: 50%;
-    background: linear-gradient(rgb(154, 237, 158),rgb(87, 206, 51));
-    padding: 10px 20px;
-    box-sizing: border-box;
+.content-form {
+    background:linear-gradient(rgb(154, 237, 158),rgb(87, 206, 51));
+    color: #fff;
+    margin: 30px auto;
+    overflow: auto;
+    padding: 0px 5px;
+    width: 60%;
     border-radius: 10px;
-    border: 2px solid rgb(87, 206, 51, 0.7);
 }
-.seccion{
-	padding: 15px;
+.sub-title {
+    text-align: center;
+    margin: 10px auto;
 }
-.seccion input{
-	float: right;
-	width: 70%;
+.sub-title:after {
+    content: "";
+    height: 2px;
+    background:white;
+    display: block;
+    margin: auto;
 }
-label, .inferior a{
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+
+}
+.form-group a{
 	color: white;
+	font-size: 16px;
+
 }
-.inferior{
-	text-align: center;
-	padding: 20px;
+.form-group a:hover, .form-group:active{
+	color: green;
 }
-.inferior input, .inferior a{
-	margin:0 15px;
+.form-control {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+} 
+.width-12{
+	width: 100%;
 }
-.inferior input{
-	color: white;
-	background: green;
+#ingresar {
+    background: green;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    border: 1px solid darkgreen;
+    border-radius: 5px;
+    width: 150px;
+    float: right;
 }
 
 
@@ -81,17 +103,14 @@ label, .inferior a{
 		"footer";
 		margin:0px;
 	}
-	.formIngreso{
-		margin: 10px auto;
-	}
-
-	.formIngreso, aside, article{
-		width: 95%;
-	}
-	.formIngreso label, .formIngreso a{
-		font-size: 13px;
-	}
+	
 	article{
 		margin: 0 auto;
+	}
+	.content-form{
+		width: 95%;
+	}
+	.sub-title{
+		font-size: 18px;
 	}
 }
