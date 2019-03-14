@@ -16,12 +16,12 @@
        {% include 'include/menu.html' %}
             
     </header>
-    <h1>{{session['messages']}}</h1>
+
     <section class="content-form">
 
         <h4 class="sub-title">Accede a tu cuenta</h2>
 
-        <form action="#" method="post" id="ingresar-form">
+        <form action="/procesaLogin" method="post" id="ingresar-form">
 
         <div class="form-group width-12">
                  <div class="width-12">
@@ -48,8 +48,9 @@
                 <input id="ingresar" type="submit" value="Ingresar" name="ingresar">
             
             </div>
-
-
+        <div class="form-group width-12">
+            <h5>{{mensaje}}</h5>
+        </dir>
         </form>
     </section>
 

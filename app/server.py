@@ -85,7 +85,7 @@ def ingresar():
         return render_template('ingresar.html')
 
 
-@app.route('/ingresar', methods=['POST'])
+@app.route('/procesaLogin', methods=['POST'])
 def login():
     session['messages'] = ''
     email = request.form['email']
@@ -99,10 +99,10 @@ def login():
     rows = mycursor.fetchall()
     if not rows:
         session['messages'] = 'El usuario no existe.'
-        return redirect(url_for('ingresar'))
+        return render_template('ingresar.html',mensaje=session['messages'])
     elif rows[0][2] != password:
         session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
-        return redirect(url_for('ingresar'))
+        return render_template('ingresar.html',mensaje=session['messages'])
     else:
         session['email'] = rows[0][1]
         session['idUsuario'] = rows[0][0]
