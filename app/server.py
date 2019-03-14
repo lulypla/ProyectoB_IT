@@ -223,7 +223,6 @@ def postUpdateUsuario():
             missing.append(field)
         # sino validar si es ci que sean solo numeros y cantidad 8 (esto lo deberia hacer un javascript antes igual)
     if missing:
-        print("Vacios")
         return redirect(url_for('update_usuario.html'))
 
     # Me fijo que haya ningun usuario con ese email
@@ -241,7 +240,6 @@ def postUpdateUsuario():
         password = [request.form.get('password')][0]
         sql = "UPDATE Usuario set email = '"+email+"', password = '" + \
             password+"' WHERE idUsuario = "+str(idUsuario)+""
-        print(sql)
         mycursor.execute(sql)
 
         # hago el insert en la tabla cliente
@@ -250,13 +248,10 @@ def postUpdateUsuario():
         fechaNac = str([request.form.get('fecha_nac')][0])
         sql = "UPDATE Cliente set nombre = '"+nombre+"', apellido = '"+apellido+"' ,ci = '" + [request.form.get('nro_documento')][0]+"' ,sexo= '"+[request.form.get(
             'sexo')][0]+"',celular='"+[request.form.get('tel')][0]+"',fecDeNac= '" + fechaNac+"', tipoDoc = '" + [request.form.get('tipo_doc')][0]+"' WHERE idUsuario = "+str(idUsuario)+""
-        print(sql)
         mycursor.execute(sql)
-        print("Se ejecuto sql")
         # actualizo en la base los insert
         mydb.commit()
-        print("Se ejecuto el commit")
-
+        session['email'] = email
         return redirect(url_for('updateUsuario'))
     else:
         # hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
