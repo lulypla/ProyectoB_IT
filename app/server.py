@@ -261,10 +261,20 @@ def postUpdateUsuario():
 
 @app.route('/EliminarCuenta', methods=['GET'])
 def eliminarCuenta():
-    eliminar = session['email']
+    
+    emailUsuarioEliminar = session['email']
+    idUsuarioEliminar = session['idUsuario']
+    
+    #Elimina en tabla Usuario
     mycursor.execute(
-        """DELETE FROM Usuario WHERE email = %s """, [eliminar])
+        """DELETE FROM Usuario WHERE email = %s """, [emailUsuarioEliminar])
     mydb.commit()
+    
+    #Elimina en tabla Cliente
+    mycursor.execute(
+        """DELETE FROM Cliente WHERE idUsuario = %s """, [idUsuarioEliminar])
+    mydb.commit()
+    
     # flash('Cuenta Eliminada Satisfactoriamente')
     return cerrarSesion()
 
