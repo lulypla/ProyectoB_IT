@@ -257,7 +257,7 @@ def postUpdateUsuario():
         mydb.commit()
         print("Se ejecuto el commit")
 
-        return redirect(url_for('updateUusario'))
+        return redirect(url_for('updateUsuario'))
     else:
         # hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
         session['messages'] = 'Fallo el update.'
