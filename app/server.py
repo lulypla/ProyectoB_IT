@@ -250,7 +250,7 @@ def postUpdateUsuario():
             'sexo')][0]+"',celular='"+[request.form.get('tel')][0]+"',fecDeNac= '" + fechaNac+"', tipoDoc = '" + [request.form.get('tipo_doc')][0]+"' WHERE idUsuario = "+str(idUsuario)+""
         mycursor.execute(sql)
         # actualizo en la base los insert
-        mydb.commit()
+        mydb.commit() #
         session['email'] = email
         return redirect(url_for('updateUsuario'))
     else:
