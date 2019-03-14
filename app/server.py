@@ -156,7 +156,7 @@ def registroUsuarioPost():
         idUsuario = rows[0][0]
         idUsuario = idUsuario + 1
         # hago el insert en la tabla usuario
-        sql = "INSERT INTO Usuario (idUsuario, email, password) VALUES ("+str(idUsuario)+",'"+[
+        sql = "INSERT INTO Usuario (idUsuario, email, password, tipo) VALUES ("+str(idUsuario)+",'"+[
             request.form.get('email')][0]+"','"+[request.form.get('password')][0]+"',"+str(1)+")"
         mycursor.execute(sql)
         # hago el insert en la tabla cliente
@@ -250,7 +250,7 @@ def postUpdateUsuario():
             'sexo')][0]+"',celular='"+[request.form.get('tel')][0]+"',fecDeNac= '" + fechaNac+"', tipoDoc = '" + [request.form.get('tipo_doc')][0]+"' WHERE idUsuario = "+str(idUsuario)+""
         mycursor.execute(sql)
         # actualizo en la base los insert
-        mydb.commit() #
+        mydb.commit()
         session['email'] = email
         return redirect(url_for('updateUsuario'))
     else:
@@ -263,13 +263,12 @@ def postUpdateUsuario():
 def eliminarCuenta():
     eliminar = session['email']
     mycursor.execute(
-     """DELETE FROM Usuario WHERE email = %s """
-       ,[eliminar])
+        """DELETE FROM Usuario WHERE email = %s """, [eliminar])
     mydb.commit()
-    #flash('Cuenta Eliminada Satisfactoriamente')
+    # flash('Cuenta Eliminada Satisfactoriamente')
     return cerrarSesion()
-    
-    
+
+
 @app.route('/cerrarSesion', methods=['GET'])
 def cerrarSesion():
 
