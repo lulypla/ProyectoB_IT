@@ -277,17 +277,7 @@ aside, .cercanos{
 		margin:0px;
 
 	}
-	h2{
-		font-size: 100%;
-	}
-	.abajo{
-		left: 38%;
-		width: 65%;
-	}
-	.arriba{
-		top: 10px;
-		width: 80%;
-	}
+	
 	.icono img{
 		width: 13%;
 	}
@@ -329,22 +319,9 @@ aside, .cercanos{
 		font-size: 10px;
 
 	}
+	.img h2{
+		display: none;
+	}
 	
-
-}
-@media only screen and (min-width: 800px) and (max-width: 1366px){
-	.abajo{
-		top:75%;
-		left: 65%;
-		font-size: 25px; 
-	}
-	.arriba{
-		top: 10%;
-		font-size: 25px;
-	}
-	.eco{
-		width: 13%;
-	}
-
 
 }
