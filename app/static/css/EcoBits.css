@@ -3,11 +3,11 @@
 - Distribución de los elementos en la página con el sistema de grilla
 */
 
-/* Color */
+/* Color
 .item:nth-child(4){
 	background:green;
 }
-
+ */
 /* Grilla */
 .body{
 	display: grid;
@@ -48,3 +48,9 @@
 		margin:0px;
 
 	}
+}
+
+.headerEcoBit{
+	height: 65px;
+	margin-bottom: 20px;
+}
