@@ -70,11 +70,9 @@
         {% include 'include/menu.html' %}
       </header>
       <section>
-        <header>
           <h1>Mi perfil</h1>
           <h3 id="mensajeUpdate"></h3>
           <h3>{{ session["mensaje"] }}</h3>
-        </header>
         <form
           action="update_usuario"
           method="POST"

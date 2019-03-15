@@ -109,10 +109,10 @@ def login():
         return redirect(url_for('ofertas'))
 
 
-@app.route('/signup_seleccion', methods=['GET', 'POST'])
-def registro():
-    # registro
-    return render_template('signup_seleccion.html')
+@app.route('/usuario', methods=['GET', 'POST'])
+def miPanel():
+    # panel
+    return render_template('usuario.html')
 
 
 @app.route('/signup_usuario', methods=['GET'])

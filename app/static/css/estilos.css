@@ -239,20 +239,15 @@ a.dropdown-item:active{
 
 font-size: 15px;
 border-radius: 5px;
-color: black
+color: black;
 
 }
 .miPanelMenu{
-   
     font-size: 15px;
-    background-color: darkgreen;
     border-radius: 5px;
-    color: #eee;
 }
 .cerrarSesionMenu{
     
     font-size: 15px;
-    background-color: darkgreen;
-    border-radius: 5px;
-    color: grey;
+    color: green;
 }

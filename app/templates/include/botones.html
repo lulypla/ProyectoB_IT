@@ -3,9 +3,10 @@
 <!-- Estado de los botones dinamicos que dependen del inicio de sesion -->
 {% if session['email'] and session['email'] != ''%}
 <span class="emailMenu">{{session['email']}}</span>
-<input type="submit" class="miPanelMenu" value="Mi panel" onclick="window.location='/update_usuario';">
+<div class="panelCerrar">
+<input type="submit" class="miPanelMenu" value="Mi panel" onclick="window.location='/usuario';">
 <a class="cerrarSesionMenu" href="/cerrarSesion">Cerrar Session</a>
-<a class="EliminarCuenta" href="/EliminarCuenta">Eliminar</a>
+</div>
 {% else %}
 <div class="botones">
 <input type="submit" name="acceso" value="Ingresar" onclick="window.location='ingresar';">
