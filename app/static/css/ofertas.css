@@ -15,8 +15,7 @@
 	grid-template-columns: 4fr;
 	grid-template-areas:
 	"header header"
-	"section article"
-	"aside aside "
+	"section section"
 	"sociales sociales"
 	"footer footer";
 }
@@ -25,16 +24,26 @@
 }
 .body section{
 	grid-area: section;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-.body article{
-	grid-area: article; 
-}
-.body aside{
-	grid-area: aside;
-}
+
 .body .sociales{
 	grid-area: sociales;
 }
 .body footer{
 	grid-area: footer;
+}
+
+
+@media(max-width: 799px){
+	.body{
+	display: grid;
+	grid-template-areas:
+	"header"
+	"section"
+	"sociales"
+	"footer";
+}
 }

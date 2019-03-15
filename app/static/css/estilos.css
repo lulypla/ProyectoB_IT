@@ -251,3 +251,23 @@ color: black;
     font-size: 15px;
     color: green;
 }
+
+.ul-panel{
+    list-style: none;
+    margin: 30px auto;
+    width: 300px;
+    text-align: center;
+}
+.ul-panel li{
+    padding: 15px;
+    background-color: green;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.7);
+
+}
+.ul-panel li:hover, .ul-panel li:focus{
+    background-color: black;
+}
+.ul-panel a{
+    text-decoration: none;
+    color: white;
+}

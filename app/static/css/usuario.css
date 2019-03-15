@@ -8,8 +8,8 @@
 	display: grid;
 	grid-template-areas:
 	"header header"
-	"section article"
-	"section article"
+	"section aside"
+	"section aside"
 	"sociales sociales"
 	"footer footer";
 }
@@ -19,8 +19,8 @@
 .body section{
 	grid-area: section;
 }
-.body article{
-	grid-area: article;
+.body aside{
+	grid-area: aside;
 }
 body .sociales{
 	grid-area: sociales;
@@ -36,7 +36,7 @@ body .sociales{
 		"header" 
 		"main"
 		"section"
-		"article"
+		"aside"
 		"sociales"
 		"footer";
 		margin:0px;

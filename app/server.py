@@ -111,7 +111,7 @@ def login():
 
 @app.route('/usuario', methods=['GET', 'POST'])
 def miPanel():
-    # panel
+    # registro
     return render_template('usuario.html')
 
 
