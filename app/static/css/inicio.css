@@ -2,9 +2,7 @@
 Estilos de Secciones de index.html
 */
 
-.item:nth-child(1){
-	background:green;
-}
+
 /* Grilla */
 .body{
 	display: grid;

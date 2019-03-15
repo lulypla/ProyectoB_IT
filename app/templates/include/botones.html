@@ -2,10 +2,24 @@
 {% block content %}
 <!-- Estado de los botones dinamicos que dependen del inicio de sesion -->
 {% if session['email'] and session['email'] != ''%}
-<span class="emailMenu">{{session['email']}}</span>
-<div class="panelCerrar">
-<input type="submit" class="miPanelMenu" value="Mi panel" onclick="window.location='/usuario';">
-<a class="cerrarSesionMenu" href="/cerrarSesion">Cerrar Session</a>
+
+<div class="botones">
+    <div class="dropdown">
+        <button type="button" class="btn btn-success dropdown-toggle cuenta" data-toggle="dropdown">
+          Cuenta
+        </button>
+        <div class="dropdown-menu">
+         <!--ACA despues controlamos si es usuario y que opciones le ponemos segun eso-->
+         <a class="dropdown-item" href="/update_usuario">Mi perfil</a>
+         <a class="dropdown-item" href="">Movimientos</a>
+         <a class="dropdown-item" href="">Tabla de posiciones</a>
+         <a class="dropdown-item" href="/EliminarCuenta">Darse de baja</a>
+         <a class="dropdown-item" href="/cerrarSesion">Salir</a>
+        </div>
+      </div>
+      <a class="btn btn-primary"  href="/cerrarSesion" role="button">Cerrar Session</a>
+    </div>
+
 </div>
 {% else %}
 <div class="botones">

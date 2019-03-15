@@ -3,10 +3,6 @@
 - Distribución de los elementos en la página con el sistema de grilla
 */
 
-/* Color */
-.item:nth-child(2){
-	background:green;
-}
 
 /* Grilla */
 .body{
