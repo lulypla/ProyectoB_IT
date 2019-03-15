@@ -14,25 +14,9 @@ app = Flask(__name__)
 app.secret_key = 'AVerSiFuncionaConEstaMierda'
 
 mydb = mysql.connector.connect(
-    host='remotemysql.com', database='AqoOvh1tJq', user='AqoOvh1tJq', password='IWv4eTB3oe')
+    host='remotemysql.com', database='AqoOvh1tJq', user='AqoOvh1tJq', password='IWv4eTB3oe' , connect_timeout=10000)
 
 mycursor = mydb.cursor()
-
-
-# Esto es para usar en el list clientes
-# ycursor.execute("SELECT * FROM Cliente")
-# ow_headers=[x[0] for x in mycursor.description]
-# ows = mycursor.fetchall()
-# son_data=[]
-# or result in rows:
-#    #if isinstance(result, datetime.datetime):
-#    #    fecha = result
-#    #    fecha = datetime.strptime(fecha, "%d-%m-%Y") #fecha.strftime('%m/%d/%Y')
-#    #    print (fecha)
-#    #    json_data.append(dict(zip(row_headers,fecha)))
-#    #else:
-#    #   json_data.append(dict(zip(row_headers,result)))
-#   print (result)#(json.dumps(json_data))
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
