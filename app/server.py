@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.secret_key = 'AVerSiFuncionaConEstaMierda'
 
 mydb = mysql.connector.connect(
-    host='remotemysql.com', database='AqoOvh1tJq', user='AqoOvh1tJq', password='IWv4eTB3oe' , connect_timeout=10000)
+    host='remotemysql.com', database='AqoOvh1tJq', user='AqoOvh1tJq', password='IWv4eTB3oe' , connect_timeout=50000)
 
 mycursor = mydb.cursor()
 

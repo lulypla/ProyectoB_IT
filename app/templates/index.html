@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>EcoBits</title>
+    <link rel = "stylesheet" href = "static/css/ofertas.css">
     <link rel = "stylesheet" href = "static/css/estilos.css">
     <link rel = "stylesheet" href = "static/css/inicio.css">
     <link rel = "stylesheet" href = "static/css/footer.css">
@@ -18,11 +19,12 @@
 </head>
 
 <body>
-    <div class="body">
-    <header>
-        <!-- El menú principal -->
-        {% include 'include/menu.html' %}    
-    </header>
+  
+    
+        <header class="headerOfertas">
+                {% include 'include/menu.html' %}
+               
+             </header>
     
     <main>
     <div class="slider">
@@ -100,6 +102,5 @@
     <footer>
         {% include 'include/footer.html' %}
     </footer>
-    </div>
 </body>
 </html>
