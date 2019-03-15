@@ -205,9 +205,10 @@ aside{
 .texto{
 	display: table-cell;
 	vertical-align: middle;
+	width:  50%;
 }
 .texto h3{
-	margin-left: 45%;
+	margin-left: 32%;
 	color: green;
 }
 .saber{
@@ -216,6 +217,7 @@ aside{
 	margin-left: 90%;
 	margin-top: 30px;
 	padding: 5px;
+	
 }
 aside, .cercanos{
 	display: flex;
@@ -242,10 +244,7 @@ aside, .cercanos{
 }
 
 .mapa{
-	width:50%;
-	margin-left: 10px;
-
-
+	width:40%;
 }
 
 
@@ -302,12 +301,7 @@ aside, .cercanos{
 	.cercanos{
 		width: 100%;
 	}
-	.mapa{
-		width: 48%;
-		margin-left: 15px;
-		height: 45%;
-		
-	}
+
 	.direccion{
 		width: 40%;
 		height: 100%;
@@ -322,4 +316,32 @@ aside, .cercanos{
 	}
 	
 
+}
+
+
+.aside .imgBola{
+	width: 66%;
+	margin-right: 95px !important;
+}
+
+#saberMas{
+	background-color: green;
+	color: lavender;
+	padding: 3px;
+	border-radius: 5px;
+	width: 100px;
+	display: block;
+	text-align:  center;
+	margin-left: 32%;
+}
+.mapa{
+width: 33%;
+}
+
+.direccionesDiv{
+width: 50%;
+}
+
+.cercanos{
+	display: flex !important;
 }
