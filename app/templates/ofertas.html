@@ -12,37 +12,40 @@
 {% include 'include/desplegable.html'%}
 </head>
 <body>
-<div class="body">
 
 
-    <header>
+
+    <header class="headerOfertas">
        {% include 'include/menu.html' %}
       
     </header>
-    <section>   
+   
            
    
 
-        <h1>OFERTAS!!</h1> 
+        
                           
-                <div class="container-fluid" style="display: flex">
+                <div class="container" >
+                        <h1>OFERTAS!!</h1> 
+                        <div class="card-deck">
                         {% for oferta in ofertas %}
                        
-                        <div  style="width: 30%; margin: 20px; border: indigo solid 2px" >
-                                <img  src="/static/imagenes/playa.png" alt="Card image cap">
-                                <div>
-                                  <h5>titulo: {{oferta[2]}}</h5>
-                                  <p>descripcion: {{oferta[3]}}</p>
-                                  <p>Cantidad Ecobit: {{oferta[4]}}</p>
-                                </div>
-                                   <a href="#" >Ampliar o canjear, definir</a>
-                               
-                        </div>
+                            <div  class="card col-4" style="width: 18rem;" >
+                                    <img   class="card-img-top" src="/static/imagenes/playa.png" alt="Card image cap">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{oferta[2]}}</h5>
+                                      <p class="card-text"><span class="subTitle">Detalle:</span> {{oferta[3]}}</p>
+                                      <p class="card-text"><span class="subTitle">Cantidad Ecobit:</span> {{oferta[4]}}</p>
+                                    </div>
+                                       <a class="btn btn-primary" href="#" >Canjear</a>
+                                
+                            </div>
+                       
                         {% endfor %}
+                    </div>
                 </div>
-    </section>
-    <article></article>
-    <aside></aside>
+ 
+   
 
     <!-- Sociales template -->
 
@@ -53,6 +56,6 @@
         {% include 'include/footer.html' %}
     </footer>
 
-</div>
+
 </body>
 </html>
