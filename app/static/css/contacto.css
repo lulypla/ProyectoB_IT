@@ -5,7 +5,7 @@
 
 /* Color */
 .item:nth-child(5){
-	background:green;
+	background:green !important;
 }
 
 /* Grilla */
@@ -137,4 +137,9 @@ section, aside{
 	font-size: 15px;
 }
  
+}
+
+.headerContacto{
+	height: 60px;
+	margin-bottom: 20px;
 }

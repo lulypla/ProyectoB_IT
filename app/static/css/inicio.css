@@ -1,7 +1,9 @@
 /* 
 Estilos de Secciones de index.html
 */
-
+.item:nth-child(1){
+	background:green !important;
+}
 
 /* Grilla */
 .body{
@@ -344,4 +346,8 @@ width: 50%;
 
 .cercanos{
 	display: flex !important;
+}
+.headerInicio{
+	height: 60px;
+	margin-bottom: 20px;
 }
