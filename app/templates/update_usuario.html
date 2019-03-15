@@ -78,104 +78,152 @@
           method="POST"
           onsubmit="return Validate(this)"
         >
-          <p>Nombre:</p>
-          <input
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nombre:</label>
+            <input class="form-control"
             id="nombreUpdate"
-            class="input"
             name="nombre"
             type="text"
             required="required"
             placeholder="Escribe tu nombre"
           />
-          <p>Apellido:</p>
-
-          <input
+        </div> 
+        <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input
+            class="form-control"
             id="apellidoUpdate"
-            class="input"
             name="apellido"
             type="text"
             required="required"
             placeholder="Escribe tu apellido"
           />
-          <p>Documento:</p>
-          <input
-            name="tipo_doc"
-            type="radio"
-            value="C"
-            required="required"
-          />Documento <input name="tipo_doc" type="radio" value="P" />Pasaporte
-          <input
+        </div>
+        
+        <label >Tipo de documento:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipo_doc" value="C" id="radio1" checked required="required">
+            <label class="form-check-label" for="radio1">
+                Documento
+            </label>
+        </div>
+       
+  
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipo_doc" value="P" id="radio2" >
+            <label class="form-check-label" for="radio2">
+                Pasaporte
+            </label>
+        </div>
+        <hr class="margenHr">
+
+        <div class="form-group">
+            <label for="nro_documento">Documento:</label>
+            <input
+            class="form-control"
             id="nro_documentoUpdate"
-            class="input"
             name="nro_documento"
             type="text"
             required="required"
             placeholder="Escribe tu número de documento"
           />
-          <p>Fecha de nacimiento:</p>
-          <input
+        </div>
+
+
+        <div class="form-group">
+        <label for="fecha_nac">Fecha de nacimiento:</label>
+        <input
+          class="form-control"
             id="fecha_nacUpdate"
-            class="input"
             name="fecha_nac"
             type="date"
             required="required"
           />
-          <p>Teléfono / Celular:</p>
-          <input
+        </div>
+
+        <div class="form-group">
+            <label for="tel">Teléfono / Celular:</label>
+            <input
+            class="form-control"
             id="telUpdate"
-            class="input"
             name="tel"
             type="tel"
             required="required"
             placeholder="Escribe tu número de teléfono / celular"
           />
 
-          <p>Sexo:</p>
-          <input
-            name="sexo"
-            type="radio"
-            value="F"
-            required="required"
-          />Femenino <input name="sexo" type="radio" value="M" />Masculino
-          <input name="sexo" type="radio" value="O" />Otro
-          <p>Correo electrónico:</p>
-          <input
+          <label >Sexo:</label>
+      <div class="form-check">
+          <input class="form-check-input" type="radio" name="sexo" value="F" id="radioF" checked required="required">
+          <label class="form-check-label" for="radioF">
+              Femenino
+          </label>
+      </div>
+      <div class="form-check">
+          <input class="form-check-input" type="radio" name="sexo" value="M" id="radioM" >
+          <label class="form-check-label" for="radioM">
+              Masculino
+          </label>
+      </div>
+      <div class="form-check">
+          <input class="form-check-input" type="radio" name="sexo" value="O" id="radioO" >
+          <label class="form-check-label" for="radioO">
+              Otro
+          </label>
+      </div>
+      <hr class="margenHr">
+
+         <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input
+          class="form-control"
             id="emailUpdate"
-            class="input"
             name="email"
             type="email"
             id="email"
             required
             placeholder="Escribe tu dirección de correo electrónico"
           />
-          <p>Repetir correo electrónico:</p>
-          <input
+          </div>
+
+         <div class="form-group">
+        <label for="repetir_email">Repetir E-mail:</label>
+        <input
+          class="form-control"
             onblur="console.log(iguales(this.value, document.getElementById('email').value ))"
             id="repetirEmailUpdate"
-            class="input"
             name="repetir_email"
             type="email"
             required="required"
             placeholder="Repite tu dirección de correo electrónico"
           />
-          <p>Contraseña:</p>
-          <input
+          </div>
+
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input
+            class="form-control"
             id="passwordUpdate"
-            class="input"
             name="password"
             type="password"
             required="required"
             placeholder="Escribe una contraseña"
           />
-          <p>Repetir contraseña:</p>
-          <input
+          </div>
+
+        <div class="form-group">
+        <label for="repetir_password">Repetir contraseña:</label>
+        <input
+          class="form-control"
             id="repetirPasswordUpdate"
-            class="input"
             name="repetir_password"
             type="password"
             required="required"
             placeholder="Repite tu contraseña"
           />
+          </div>
+
+
           <input
             id="registrarseUpdate"
             name="registrarse"
@@ -185,10 +233,6 @@
           />
         </form>
       </section>
-      <aside>
-        {% include 'include/destacadas.html' %}
-      </aside>
-
       <!-- Sociales template -->
 
       {% include 'include/sociales.html' %}
