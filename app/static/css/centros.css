@@ -50,6 +50,44 @@
 }
 
 .headerCentros{
-	height: 60px;
+	height: 90px;
 	margin-bottom: 20px;
 }
+
+/*  Puntos cercanos */
+.cercanos{
+
+	margin: 50px;
+	width: auto;
+
+
+}
+.cercanos h3, .org h3{
+	color: green;
+	text-align: center;
+	margin: 20px auto;
+}
+
+.mapa{
+	width:40%;
+}
+
+
+.direccion li{
+	line-height: 3; 
+}
+.mapa, .direccion{
+	display: inline-block;
+}
+
+.mapa{
+	width: 33%;
+	}
+	
+	.direccionesDiv{
+	width: 50%;
+	}
+	
+	.cercanos{
+		display: flex !important;
+	}
