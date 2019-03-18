@@ -71,7 +71,7 @@ def ingresar():
 
 @app.route('/procesaLogin', methods=['POST'])
 def login():
-    session['messages'] = ''
+   #session['messages'] = ''
     email = request.form['email']
     password = request.form['password']
     usuarioNoRegistrado = "Usuario no registrado"
@@ -82,11 +82,15 @@ def login():
         """, [email])
     rows = mycursor.fetchall()
     if not rows:
-        session['messages'] = 'El usuario no existe.'
-        return render_template('ingresar.html',mensaje=session['messages'])
+        
+        #session['messages'] = 'El usuario no existe.'
+        flash ('El usuario no existe')
+        return render_template('ingresar.html')
     elif rows[0][2] != password:
-        session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
-        return render_template('ingresar.html',mensaje=session['messages'])
+        
+        #session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
+        flash ("La contraseña no es válida. Intente nuevamente")
+        return render_template('ingresar.html')
     else:
         session['email'] = rows[0][1]
         session['idUsuario'] = rows[0][0]
@@ -108,7 +112,7 @@ def registroUsuario():
 @app.route('/signup_usuario', methods=['POST'])
 def registroUsuarioPost():
     # vacio mensaje de session
-    session['messages'] = ''
+    #session['messages'] = ''
     # check campos vacios
     missing = []
     fields = ['nombre', 'apellido', 'tipo_doc', 'nro_documento', 'fecha_nac',
@@ -152,7 +156,8 @@ def registroUsuarioPost():
         return render_template('ingresar.html')
     else:
         # hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
-        session['messages'] = 'El email ya está en uso.'
+        #session['messages'] = 'El email ya está en uso.'
+        flash('El email ya está en uso')
         return render_template('signup_usuario.html')
 
 
@@ -259,7 +264,7 @@ def eliminarCuenta():
         """DELETE FROM Cliente WHERE idUsuario = %s """, [idUsuarioEliminar])
     mydb.commit()
     
-    # flash('Cuenta Eliminada Satisfactoriamente')
+    flash('Cuenta Eliminada Satisfactoriamente')
     return cerrarSesion()
 
 
