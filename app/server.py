@@ -89,7 +89,7 @@ def login():
     elif rows[0][2] != password:
         
         #session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
-        flash ("La contraseña no es válida. Intente nuevamente")
+        flash ('La contraseña no es válida. Intente nuevamente')
         return render_template('ingresar.html')
     else:
         session['email'] = rows[0][1]
