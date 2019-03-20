@@ -13,8 +13,7 @@
 	display: grid;
 	grid-template-areas:
 	"header header"
-	"section aside"
-	"section aside"
+	"section article"
 	"sociales sociales"
 	"footer footer";
 }
@@ -24,8 +23,8 @@
 .body section{
 	grid-area: section;
 }
-.body aside{
-	grid-area: aside;
+.body article{
+	grid-area: article;
 }
 
 .body .sociales{
@@ -35,7 +34,7 @@
 	grid-area: footer;
 }
 
-section, aside{
+section, article{
 	display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -45,10 +44,10 @@ section, aside{
 .content-form {
     background:linear-gradient(rgb(154, 237, 158),rgb(87, 206, 51));
     color: #fff;
-    margin: 30px 230px;
+    margin: 30px auto;
     overflow: center;
     padding: 0px 5px;
-    width: 80%;
+    width: 50%;
     border-radius: 10px;
 }
 .sub-title {
@@ -113,23 +112,32 @@ section, aside{
 	grid-template-areas:
 	"header"
 	"section"
-	"aside"
+	"article"
 	"sociales"
 	"footer";
+}
+.body header{
+    grid-area: header;
+}
+.body section{
+    grid-area: section;
+}
+.body article{
+    grid-area: article;
+}
+
+.body .sociales{
+    grid-area: sociales;
+}
+.body footer{
+    grid-area: footer;
 }
 
 .content-form {
     width: 95%; 
     border-radius: 0px;
 }
-.width-6 {
-    width: 100%;
-    font-size: 1em;
-}
-.btn {
-    
-        width: 100%;
-}
+
 .sub-title{
 	font-size: 18px;
 }
