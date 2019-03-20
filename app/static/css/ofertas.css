@@ -10,8 +10,6 @@
 /* Grilla */
 .body{
 	display: grid;
-	grid-template-rows:1fr 3fr 1fr;
-	grid-template-columns: 4fr;
 	grid-template-areas:
 	"header header"
 	"section section"
