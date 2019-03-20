@@ -4,6 +4,7 @@ footer{
 	display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    text-align: center;
 
 
 }
@@ -19,6 +20,7 @@ footer a:active{
 }
 footer li{
 	list-style: none;
+	text-align: justify;
 }
 footer ul{
 	margin: 15px auto;
