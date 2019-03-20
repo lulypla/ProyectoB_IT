@@ -8,45 +8,14 @@
 	background:green !important;
 }
 
-/* Grilla */
-.body{
-	display: grid;
-	grid-template-rows:1fr 3fr 1fr;
-	grid-template-columns: 4fr;
-	grid-template-areas:
-	"header header"
-	"section aside"
-	"section aside"
-	"sociales sociales"
-	"footer footer";
-}
-.body header{
-	grid-area: header;
-}
-.body section{
-	grid-area: section;
-}
-.body aside{
-	grid-area: aside;
-}
-.body .sociales{
-	grid-area: sociales;
-}
-.body footer{
-	grid-area: footer;
-}
+
 
 @media(max-width: 799px){
-	.body{
-		display: grid;
-		grid-template-areas:
-		"header" 
-		"section"
-		"aside"
-		"sociales"
-		"footer";
-		margin:0px;
-
+	.container h1{
+		font-size: 24px;
+	}
+	.container h2,.container p{
+		font-size: 18px;
 	}
 }
 
