@@ -1,46 +1,29 @@
 <!DOCTYPE html>
 <html lang="es-ES">
 <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-
-<style>
-*{font-family: 'Titillium Web', sans-serif;
-}
-</style>
   <head>
     <meta charset="UTF-8" />
     <title>EcoBits - Regístrate, ¡Es gratis!</title>
+    <link rel = "stylesheet" href = "static/css/estilos.css">
+    <link rel = "stylesheet" href = "static/css/footer.css">
     <link rel="stylesheet" href="/static/css/signup.css" />
+    <meta name = "viewport" content = "width-device-width, user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1">
+    <link rel="icon" type="image/png" href="static/imagenes/icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
     <script type="text/javascript" src="../static/js/validaciones.js"></script>
-    <script type="text/javascript">
-      const Validate = objForm => {
-        var email = objForm[(input = "email")].value;
-        var repetir_email = objForm[(input = "repetir_email")].value;
-        var password = objForm[(input = "password")].value;
-        var repetir_password = objForm[(input = "repetir_password")].value;
-
-        if (email === repetir_email) {
-          if (password === repetir_password) {
-            return true;
-          } else {
-            alert("contraseñas no coinciden");
-            return false;
-          }
-        } else {
-          alert("email no coinciden");
-          return false;
-        }
-      };
-    </script>
     {% include 'include/desplegable.html'%}
   </head>
+
   <body>
-    <header>
-      <h3>{{ session["messages"] }}</h3>
-      <a class="back" href="javascript:history.go(-1)"
-        ><img src="static/imagenes/left-arrow.png" class="back"
-      /></a>
+    
+      <header class="headerSignupUsuario">
+          {% include 'include/menu.html' %}
+         
+       </header>
+    <div class="container">
+     
       <h1>Registro</h1>
-    </header>
+   
     <form
       action="signup_usuario"
       method="POST"
@@ -212,5 +195,7 @@
       <a href="sesion_facebook.html">Facebook.</a>
     </p>
     <p>¿Ya estás registrado? Haz clic <a href="ingresar">aquí.</a></p>
+
+  </div>
   </body>
 </html>
