@@ -84,10 +84,15 @@
 	width: 33%;
 	}
 	
-	.direccionesDiv{
-	width: 50%;
-	}
-	
-	.cercanos{
-		display: flex !important;
-	}
+.direccionesDiv{
+width: 50%;
+}
+
+.cercanos{
+	display: flex !important;
+}
+
+.headerCentros{
+	height: 60px;
+	margin-bottom: 20px;
+}
