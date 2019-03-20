@@ -16,23 +16,13 @@
 
 
     <header class="headerOfertas">
-       {% include 'include/menu.html' %}
-      
+       {% include 'include/menu.html' %}      
     </header>
-   
-           
-   
-
-        
-                          
-                <div class="container" >
-                        
-                                {% include 'include/destacadas.html' %}
-                        
+         <div class="container" >                        
                         <div class="card-deck">
                         {% for oferta in ofertas %}
                        
-                            <div  class="card" style="width: 18rem;" >
+                            <div  class="card" >
                                     <img   class="card-img-top" src="/static/imagenes/{{oferta[6]}}" alt="Card image cap">
                                     <div class="card-body">
                                       <h5 class="card-title">{{oferta[2]}}</h5>
