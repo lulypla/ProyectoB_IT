@@ -12,7 +12,7 @@
     <link rel = "stylesheet" href = "static/css/estilos.css">
     <link rel = "stylesheet" href = "static/css/footer.css">
     <link rel="stylesheet" href="/static/css/signup.css" />
-    <meta name = "viewport" content = "width-device-width, user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1">
+    {% include 'include/datosHead.html' %}
     <link rel="icon" type="image/png" href="static/imagenes/icon.png">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
     <script type="text/javascript" src="../static/js/validaciones.js"></script>
@@ -134,5 +134,6 @@
         </p>
         <p>¿Ya estás registrado? Haz clic <a href="login.html">aquí.</a></p>
     </div>
+    {% include 'include/enlacesJavascript.html' %}
   </body>
 </html>

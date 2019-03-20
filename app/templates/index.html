@@ -7,7 +7,7 @@
     <link rel = "stylesheet" href = "static/css/estilos.css">
     <link rel = "stylesheet" href = "static/css/inicio.css">
     <link rel = "stylesheet" href = "static/css/footer.css">
-<meta name = "viewport" content = "width-device-width, user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1">
+    {% include 'include/datosHead.html' %}
 <link rel="icon" type="image/png" href="static/imagenes/icon.png">
 <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 {% include 'include/desplegable.html'%}
@@ -61,10 +61,6 @@
 
     </section>
 
-    <!-- ofertas destacadas -->
-    <article>
-        {% include 'include/destacadas.html' %}
-    </article>
 
     <!-- saber más -->
     <aside>
@@ -80,8 +76,10 @@
     </aside>
 
     <div class="cercanos">
+
+        <iframe class="mapa" src="https://www.google.com/maps/d/embed?mid=1HUFY7ilWMDdqNPyI6JERJry8nZ5zKxRQ&hl=es-419" class="mapa"></iframe>
             <div class="direccionesDiv">
-                    <h3>Encontrá tu punto de reciclaje más cercano</h3>
+                    <h5>Encontrá tu punto de reciclaje más cercano</h5>
                     <div class="direccion">
         
                         <ul>
@@ -92,12 +90,9 @@
                         </ul>
                     </div>
                 </div>
-        <iframe class="mapa" src="https://www.google.com/maps/d/embed?mid=1HUFY7ilWMDdqNPyI6JERJry8nZ5zKxRQ&hl=es-419" class="mapa"></iframe>
         
     </div>
-    <div class="org">
-        <h3>Apoyan:</h3>
-    </div>
+    
 <!-- Sociales template -->
 
 {% include 'include/sociales.html' %}
@@ -106,5 +101,6 @@
     <footer>
         {% include 'include/footer.html' %}
     </footer>
+    {% include 'include/enlacesJavascript.html' %}
 </body>
 </html>

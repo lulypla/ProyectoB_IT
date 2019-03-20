@@ -5,45 +5,7 @@ Estilos de Secciones de index.html
 	background:green !important;
 }
 
-/* Grilla */
-.body{
-	display: grid;
-	grid-template-areas:
-	"header header"
-	"main main"
-	"section article"
-	"aside article"
-	"cercanos org"
-	"sociales sociales"
-	"footer footer";
-}
-.body header{
-	grid-area: header;
-}
-.body main{
-	grid-area: main;
-}
-.body aside{
-	grid-area: aside;
-}
-.body section{
-	grid-area: section;
-}
-.body footer{
-	grid-area: footer;
-}
-.body article{
-	grid-area: article;
-}
-.body .cercanos{
-	grid-area: cercanos;
-}
-.body .org{
-	grid-area: org;
-}
-.body .sociales{
-	grid-area: sociales;
-}
+
 
 /* Slider */
 .slider{
@@ -229,7 +191,6 @@ aside, .cercanos{
 
 .aside img{
 	width: 70%;
-	float: right;
 }
 
 /*  Puntos cercanos */
@@ -239,7 +200,7 @@ aside, .cercanos{
 
 
 }
-.cercanos h3, .org h3{
+.cercanos h5{
 	color: green;
 	text-align: center;
 	margin: 20px auto;
@@ -253,7 +214,7 @@ aside, .cercanos{
 .direccion li{
 	line-height: 3; 
 }
-.mapa, .direccion{
+.mapa, .direccionesDiv{
 	display: inline-block;
 }
 
@@ -261,21 +222,7 @@ aside, .cercanos{
 /* pantallas pequeñas */
 
 @media(max-width: 799px){
-	.body{
-		display: grid;
-		grid-template-areas:
-		"header" 
-		"main"
-		"section"
-		"article"
-		"aside"
-		"cercanos"
-		"org"
-		"sociales"
-		"footer";
-		margin:0px;
 
-	}
 	
 	.icono img{
 		width: 13%;
@@ -287,7 +234,7 @@ aside, .cercanos{
 		width: 50%;
 		margin: 5px 0;
 	}
-	.titulo, article, .cercanos h3{
+	.titulo, article, .cercanos h5{
 		margin-top: 20px;
 		font-size: 14px;
 	}
@@ -321,10 +268,6 @@ aside, .cercanos{
 }
 
 
-.aside .imgBola{
-	width: 66%;
-	margin-right: 95px !important;
-}
 
 #saberMas{
 	background-color: green;
@@ -338,16 +281,10 @@ aside, .cercanos{
 }
 .mapa{
 width: 33%;
+margin-right: 160px;
 }
 
-.direccionesDiv{
-width: 50%;
-}
 
-.cercanos{
-	display: flex !important;
-}
 .headerInicio{
 	height: 60px;
-	margin-bottom: 20px;
 }
