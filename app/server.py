@@ -68,13 +68,17 @@ def ingresar():
     else:
         return render_template('ingresar.html')
 
+@app.route('/Canje', methods= ['GET'])
+def canje():
+     return render_template('Canje.html')
+
 
 @app.route('/procesaLogin', methods=['POST'])
 def login():
    #session['messages'] = ''
     email = request.form['email']
     password = request.form['password']
-    usuarioNoRegistrado = "Usuario no registrado"
+    #usuarioNoRegistrado = "Usuario no registrado"
     mycursor.execute("""
         SELECT *
         FROM Usuario
@@ -82,14 +86,12 @@ def login():
         """, [email])
     rows = mycursor.fetchall()
     if not rows:
-        
         #session['messages'] = 'El usuario no existe.'
-        flash ('El usuario no existe')
+        flash ("El usuario no existe")
         return render_template('ingresar.html')
     elif rows[0][2] != password:
-        
         #session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
-        flash ('La contraseña no es válida. Intente nuevamente')
+        flash ("La contraseña no es válida. Intente nuevamente")
         return render_template('ingresar.html')
     else:
         session['email'] = rows[0][1]
@@ -198,8 +200,8 @@ def getDataUsuario():
 
 @app.route('/update_usuario', methods=['POST'])
 def postUpdateUsuario():
-    # vacio mensaje de session
-    session['messages'] = ''
+    #vacio mensaje de session
+    #session['messages'] = ''
     email = session['email']
     idUsuario = session['idUsuario']
     # check campos vacios
@@ -264,7 +266,7 @@ def eliminarCuenta():
         """DELETE FROM Cliente WHERE idUsuario = %s """, [idUsuarioEliminar])
     mydb.commit()
     
-    flash('Cuenta Eliminada Satisfactoriamente')
+    flash("Cuenta Eliminada Satisfactoriamente")
     return cerrarSesion()
 
 

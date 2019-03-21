@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>EcoBits</title>
+    <link rel = "stylesheet" href = "static/css/estilos.css">
+    <link rel = "stylesheet" href = "static/css/EcoBits.css">
+    <link rel = "stylesheet" href = "static/css/footer.css">
+    {% include 'include/datosHead.html' %}
+    <link rel="icon" type="image/png" href="static/imagenes/icon.png">
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+{% include 'include/desplegable.html'%}
+<style>
+*{font-family: 'Titillium Web', sans-serif;
+}
+</style>
+</head>
+<body>
+
+    <header class="headerEcoBit">
+       {% include 'include/menu.html' %}
+            
+    </header>
+    <div class="container">
+        <section>
+            <h1 align = center>Funcoinalidad en construcción</h1>
+
+
+        </section>
+        <article>
+            {% include 'include/info.html' %}
+        </article>
+
+    </div>
+    <!-- Sociales template -->
+
+{% include 'include/sociales.html' %}
+
+    <!-- template footer -->
+    <footer>
+        {% include 'include/footer.html' %}
+    </footer>
+
+</body>
+</html>
