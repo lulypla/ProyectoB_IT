@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>EcoBits</title>
+
     <link rel = "stylesheet" href = "static/css/estilos.css">
     <link rel = "stylesheet" href = "static/css/EcoBits.css">
     <link rel = "stylesheet" href = "static/css/footer.css">
@@ -14,6 +15,33 @@
 *{font-family: 'Titillium Web', sans-serif;
 }
 </style>
+
+
+<script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="../static/js/validaciones.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $.ajax({
+          url: "/update_usuario_getDATA",
+          type: "GET",
+          dataType: "json",
+          success: function(result) {
+            $(document.getElementById('_nombre').innerHTML = result.nombre);
+            $(document.getElementById('_apellido').innerHTML = result.apellido);
+            $(document.getElementById('_saldo').innerHTML = result.ecobit);
+            },
+          error: function(result) {
+            $("#mensajeUpdate").append("No se pudo obtener datos");
+          }
+        });
+      });
+    </script>
+
+
 </head>
 <body>
 
@@ -21,12 +49,32 @@
        {% include 'include/menu.html' %}
             
     </header>
-    <div class="container">
-        <section>
-            <h1 align = center>Funcionalidad en construcción</h1>
+    <div id = "_nombre"></div>
+    <div id = "_apellido"></div>
+    <div id = "_saldo"></div>
+<!------------------------------------------------------------------>
+      </div> <!--                        <div class="card-deck">
+                        {% for oferta in ofertas %}
+                       
+                            <div  class="card" >
+                                    <img   class="card-img-top" src="/static/imagenes/{{oferta[6]}}" alt="Card image cap">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{oferta[2]}}</h5>
+                                      <p class="card-text"><span class="subTitle">Detalle:</span> {{oferta[3]}}</p>
+                                      <p class="card-text"><span class="subTitle">Cantidad Ecobit:</span> {{oferta[4]}}</p>
+                                    </div>
+                                    <a class="btn btn-primary" href="/Canje" >Confirmar Canje</a>
+                                    
+                            </div>
+                       
+                        {% endfor %}
+                    </div>
+                </div-->
+                
+          
 
 
-        </section>
+        
         <article>
             {% include 'include/info.html' %}
         </article>
