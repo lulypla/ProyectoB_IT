@@ -55,9 +55,9 @@ def contacto():
 
 
 @app.route('/FAQ', methods=['GET', 'POST'])
-def faq():
-        # preguntas frecuentes
-    return render_template('faq.html')
+def saberMas():
+        # a Sobre EcoBits
+    return redirect(url_for('EcoBits'))
 
 
 @app.route('/ingresar', methods=['GET'])
