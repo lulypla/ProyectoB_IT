@@ -1,3 +1,26 @@
+<script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="../static/js/validaciones.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $.ajax({
+          url: "/update_usuario_getDATA",
+          type: "GET",
+          dataType: "json",
+          success: function(result) {
+            $(document.getElementById('_email').innerHTML = result.email);
+           
+            },
+          error: function(result) {
+            $("#mensajeUpdate").append("No se pudo obtener datos");
+          }
+        });
+      });
+    </script>
+
 <!--- Botones dinamicos del menu princiupal -->
 {% block content %}
 <!-- Estado de los botones dinamicos que dependen del inicio de sesion -->
@@ -10,6 +33,8 @@
         </button>
         <div class="dropdown-menu">
          <!--ACA despues controlamos si es usuario y que opciones le ponemos segun eso-->
+         
+         <div class="dropdown-item" id = "_email"> </div>                    
          <a class="dropdown-item" href="/update_usuario">Mi perfil</a>
          <a class="dropdown-item" href="/EliminarCuenta">Darse de baja</a>
          <a class="dropdown-item" href="/cerrarSesion">Salir</a>
