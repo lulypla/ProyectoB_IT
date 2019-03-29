@@ -85,7 +85,9 @@ section, article{
     width: 33.3%;
 }
 .width-6 {
-    width: 50%;
+    width: 80%;
+    text-align: -webkit-center;
+    
 }
 .width-12{
 	width: 100%;

@@ -55,7 +55,7 @@
         {% include 'include/menu.html' %}
        
      </header>
-     <div class="container col-xl-6 col-xs-12" >
+     <div class="container">
           <h1>Mi perfil</h1>
           <h3 id="mensajeUpdate"></h3>
           <h3>{{ session["mensaje"] }}</h3>
@@ -216,10 +216,14 @@
             type="submit"
             class="botones btn"
             value="Actualizar"
+            
+            
           />
         </form>
       </div>
-      <!-- Sociales template -->
+
+      </div>
+   <!-- Sociales template -->
 
 {% include 'include/sociales.html' %}
     <!-- template footer -->

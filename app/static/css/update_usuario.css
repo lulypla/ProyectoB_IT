@@ -7,3 +7,21 @@
 }
 *{font-family: 'Titillium Web', sans-serif;
 }
+
+
+form{
+    width: 50%;
+    margin-left: 35%;
+}
+
+h1 {
+    text-align: center;
+}
+
+#registrarseUpdate {
+    background-color: green;
+    color: white;
+    width:  50%;
+    margin-bottom: 20px;
+    
+}
