@@ -90,7 +90,8 @@ section, article{
     
 }
 .width-12{
-	width: 100%;
+    width: 100%;
+    
 }
 #btn-enviar {
     background: green;
