@@ -8,31 +8,7 @@
 	background:green !important;
 }
 
-/* Grilla */
-.body{
-	display: grid;
-	grid-template-areas:
-	"header header"
-	"section article"
-	"sociales sociales"
-	"footer footer";
-}
-.body header{
-	grid-area: header;
-}
-.body section{
-	grid-area: section;
-}
-.body article{
-	grid-area: article;
-}
 
-.body .sociales{
-	grid-area: sociales;
-}
-.body footer{
-	grid-area: footer;
-}
 
 section, article{
 	display: flex;
@@ -47,7 +23,7 @@ section, article{
     margin: 30px auto;
     overflow: center;
     padding: 0px 5px;
-    width: 50%;
+    width: 38%;
     border-radius: 10px;
 }
 .sub-title {
@@ -85,10 +61,13 @@ section, article{
     width: 33.3%;
 }
 .width-6 {
-    width: 50%;
+    width: 80%;
+    text-align: -webkit-center;
+    
 }
 .width-12{
-	width: 100%;
+    width: 100%;
+    
 }
 #btn-enviar {
     background: green;

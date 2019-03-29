@@ -40,7 +40,7 @@ section, aside, article{
     margin: 30px auto;
     overflow: auto;
     padding: 0px 5px;
-    width: 60%;
+    width: 40%;
     border-radius: 10px;
 }
 .sub-title {
@@ -78,6 +78,8 @@ section, aside, article{
 } 
 .width-12{
 	width: 100%;
+	text-align: -webkit-center;
+	
 }
 #ingresar {
     background: green;

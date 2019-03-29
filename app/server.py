@@ -70,6 +70,7 @@ def ingresar():
 
 @app.route('/Canje', methods= ['GET'])
 def canje():
+     getDataUsuario()
      return render_template('Canje.html')
 
 
@@ -195,6 +196,7 @@ def getDataUsuario():
     data['fechaDeNac'] = rows[0][6]
     data['tipoDoc'] = rows[0][8]
     data['email'] = email
+    data['ecobit'] = rows[0][7]
     return json.dumps(data)
 
 
