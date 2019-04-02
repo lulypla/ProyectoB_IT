@@ -10,6 +10,24 @@
     <link rel="icon" type="image/png" href="static/imagenes/icon.png">
 <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 {% include 'include/desplegable.html'%}
+<script>
+function Canjear(id){
+    var idEnvioOferta = {idOferta: id}
+    $.ajax({
+          url: "/canjear",
+          type: "POST",
+          dataType: "json",
+          data: idEnvioOferta,
+          success: function(result) {
+            $("#dondeDevolvesElMensajeSiTeQuedasEnEstaPag").val(result.mensaje);
+           
+          },
+          error: function(result) {
+            $("#mensajeError").append("No se pudo obtener datos");
+          }
+        });
+}
+</script>
 </head>
 <body>
 
@@ -30,7 +48,7 @@
                                       <p class="card-text"><span class="subTitle">Cantidad Ecobit:</span> {{oferta[4]}}</p>
                                     </div>
                                     {% if session['email'] and session['email'] != ''%}
-                                       <a class="btn btn-primary" href="/Canje" >Canjear</a>
+                                       <a class="btn btn-primary" href="javascript:Canjear({{oferta[0]}});" >Canjear</a>
                                     {% else %}
                                         <a class="btn btn-primary" href="/ingresar" >Canjear</a>
                                     {% endif %}
