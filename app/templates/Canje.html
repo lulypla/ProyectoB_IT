@@ -23,6 +23,8 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="../static/js/validaciones.js"></script>
+
+
     <script type="text/javascript">
       $(document).ready(function() {
         $.ajax({
@@ -41,6 +43,28 @@
       });
     </script>
 
+    <!--SCRIT CON DATO OFERTA ELEGIDA-->
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $.ajax({
+          url: "/Canje",
+          type: "GET",
+          dataType: "json",
+          success: function(result) {
+            $(document.getElementById('_titulo').innerHTML = result.titulo);
+            $(document.getElementById('_descripcion').innerHTML = result.descripcion);
+            $(document.getElementById('_costo').innerHTML = result.costo);
+            $(document.getElementById('_imagen').innerHTML = result.imagen);
+
+            },
+          error: function(result) {
+            $("#mensajeUpdate").append("No se pudo obtener datos");
+          }
+        });
+      });
+    </script>
+
 
 </head>
 <body>
@@ -50,12 +74,16 @@
             
     </header>
     <!--EN PROCESO DE DESARROLLO - PARA AGREGAR EN LA DEFENSA-->
-    <!-- <div id = "_nombre"></div>
+    <div id = "_nombre"></div>
     <div id = "_apellido"></div>
-    <div id = "_saldo"></div>     -->
+    <div id = "_saldo"></div>  
         
     <h4 align= "center">  Funcionalidad en desarrollo </h4>
 
+    <div id = "_titulo"></div>
+    <div id = "_descripcion"></div>
+    <div id = "_costo"></div> 
+    <div id = "_imagen"></div> 
 
 
 

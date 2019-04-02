@@ -17,14 +17,8 @@ function Canjear(id){
           url: "/Canje",
           type: "POST",
           dataType: "json",
-          data: idEnvioOferta,
-          success: function(result) {
-            $("#dondeDevolvesElMensajeSiTeQuedasEnEstaPag").val(result.mensaje);
-           
-          },
-          error: function(result) {
-            $("#mensajeError").append("No se pudo obtener datos");
-          }
+          data: JSON.stringify(idEnvioOferta)
+        
         });
 }
 </script>

@@ -70,9 +70,39 @@ def ingresar():
 
 @app.route('/Canje', methods= ['GET'])
 def canje():
-     getDataUsuario()
-     return render_template('Canje.html')
+    #Traigo datos de usuario 
+    getDataUsuario()
+    #Uso json con id de oferta seleccionada
+    #ruta_json = 'data/idEnvioOferta.json'
+    #with open(ruta_json) as contenido:
+     #   objOferta = json.load(contenido)
+      #  idOferta = objOferta.id
+    #Consulto en tabla Ofertas con id todos sus valores
+    #getDataOferta(idOferta)
+    return render_template('Canje.html')
 
+
+def getDataOferta(_idOferta):
+        # CONSULTA DE OFERTA ELEGIDA
+    mycursor.execute("""
+        SELECT *
+        FROM Oferta WHERE idOferta %s """, [_idOferta]
+        )
+    rows = mycursor.fetchall()
+    data = {}
+    data['titulo'] = rows[0][2]
+    data['descripcion'] = rows[0][3]
+    data['costo'] = rows[0][4]
+    data['imagen'] = rows[0][6]
+    return json.dumps(data)
+
+
+
+
+
+
+
+#-----------------------------------------------
 
 @app.route('/procesaLogin', methods=['POST'])
 def login():
@@ -198,6 +228,9 @@ def getDataUsuario():
     data['email'] = email
     data['ecobit'] = rows[0][7]
     return json.dumps(data)
+
+
+
 
 
 @app.route('/update_usuario', methods=['POST'])
