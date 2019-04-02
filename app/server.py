@@ -123,12 +123,9 @@ def registroUsuarioPost():
     for field in fields:
         value = request.form.get(field, None)
         if value is None:
-            missing.append(field)
-        # sino validar si es ci que sean solo numeros y cantidad 8 (esto lo deberia hacer un javascript antes igual)
+            missing.append(field) 
     if missing:
         return render_template('signup_usuario.html')
-
-    # ESTO FALTA check email - repetir_email y pass y repetir pass iguales   (esto lo deberia hacer un javascript antes igual, el pass capaz que no, solo aca , a definir)
 
     # Me fijo que no haya ningun usuario con ese email
     mycursor.execute("""
@@ -144,8 +141,11 @@ def registroUsuarioPost():
         FROM Usuario ORDER BY idUsuario DESC LIMIT 1
         """)
         rows = mycursor.fetchall()
-        idUsuario = rows[0][0]
-        idUsuario = idUsuario + 1
+        if not rows:
+            idUsario = 0
+        else:    
+            idUsuario = rows[0][0]
+            idUsuario = idUsuario + 1
         # hago el insert en la tabla usuario
         sql = "INSERT INTO Usuario (idUsuario, email, password, tipo) VALUES ("+str(idUsuario)+",'"+[
             request.form.get('email')][0]+"','"+[request.form.get('password')][0]+"',"+str(1)+")"
