@@ -17,8 +17,14 @@ function Canjear(id){
           url: "/Canje",
           type: "POST",
           dataType: "json",
-          data: JSON.stringify(idEnvioOferta)
-        
+          contentType: "application/json; charset=utf-8",
+          data:  JSON.stringify(idEnvioOferta),
+          success: function(result){
+                    alert(result)
+            },
+          error: function(){
+              alert('error')
+          }  
         });
 }
 </script>

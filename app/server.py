@@ -5,7 +5,7 @@ import os
 import mysql.connector
 import pymysql
 from classes import *
-from flask import Flask, request, render_template, url_for, session, json, redirect, flash
+from flask import Flask, request, render_template, url_for, session, json, redirect, flash, jsonify
 import json
 import datetime
 
@@ -68,18 +68,19 @@ def ingresar():
     else:
         return render_template('ingresar.html')
 
-@app.route('/Canje', methods= ['GET'])
+@app.route('/Canje', methods= ['POST'])
 def canje():
-    #Traigo datos de usuario 
-    getDataUsuario()
-    #Uso json con id de oferta seleccionada
-    #ruta_json = 'data/idEnvioOferta.json'
-    #with open(ruta_json) as contenido:
-     #   objOferta = json.load(contenido)
-      #  idOferta = objOferta.id
-    #Consulto en tabla Ofertas con id todos sus valores
-    #getDataOferta(idOferta)
-    return render_template('Canje.html')
+    
+    print (request.is_json)
+    content = request.get_json()
+    print (content)
+    #Aca mira la consola, tenes el id, hace las consultas que tengas que hacer con eso
+    #y despues en el data = {} arma el json que va a ser el "result" paramentro que toma el success
+    # si queres mandar algo, mandalo ahi, sino en la funcion success haces el reenvio de html que querias con 
+    #un windown.location.href o un redirect de javascript y  listo.
+    data = {}
+    return json.dumps(data)
+    #return 'CanjeExitoso'
 
 
 def getDataOferta(_idOferta):
