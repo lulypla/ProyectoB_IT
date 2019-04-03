@@ -78,10 +78,9 @@ def canje():
     #y despues en el data = {} arma el json que va a ser el "result" paramentro que toma el success
     # si queres mandar algo, mandalo ahi, sino en la funcion success haces el reenvio de html que querias con 
     #un windown.location.href o un redirect de javascript y  listo.
+    ## despues los print de arriba se pueden sacar, los deje para que veas lo que llega nomas
     data = {}
     return json.dumps(data)
-    #return 'CanjeExitoso'
-
 
 def getDataOferta(_idOferta):
         # CONSULTA DE OFERTA ELEGIDA
