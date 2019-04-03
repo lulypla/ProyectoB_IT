@@ -20,6 +20,8 @@ function Canjear(id){
           contentType: "application/json; charset=utf-8",
           data:  JSON.stringify(idEnvioOferta),
           success: function(result){
+              //aca hace el redirect o lo que quieras, levantar un alert, un modal de que se canjeo. etc
+              //este alert result ahora muestra el object data = {} vacio construido en el back
                     alert(result)
             },
           error: function(){
