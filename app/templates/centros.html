@@ -6,6 +6,7 @@
     <link rel = "stylesheet" href = "static/css/estilos.css">
     <link rel = "stylesheet" href = "static/css/centros.css">
     <link rel = "stylesheet" href = "static/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
     {% include 'include/datosHead.html' %}
     <link rel="icon" type="image/png" href="static/imagenes/icon.png">
 <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -21,22 +22,26 @@
        {% include 'include/menu.html' %}
             
     </header>
+    <div class="container">
     
-    <div class="cercanos container">
-            <div class="direccionesDiv">
-                    <h3>Encontrá tu punto de reciclaje más cercano</h3>
-                    <div class="direccion">
-        
-                        <ul>
-                            <li>8 de octubre 1234 esq. Propios</li>
-                            <li>Av. Italia 3456 esq. Centenario</li>
-                            <li>18 de julio 5678 esq. Vázquez</li>
-                            <li>Bulevar Artigas 3789 esq. Garibaldi</li>
-                        </ul>
-                    </div>
-                </div>
-        <iframe class="mapa" src="https://www.google.com/maps/d/embed?mid=1HUFY7ilWMDdqNPyI6JERJry8nZ5zKxRQ&hl=es-419" class="mapa"></iframe>
-       
+    <div class="row justify-content-center mt-2">
+        <div class="col-12">
+            <h4 class="text-center mb-5 text-success encontra">Encontrá tu punto de reciclaje más cercano</h4>
+        </div>
+            <div class="col-12 col-lg-6 w-100 m-0 align-self-center">
+            
+                            <ul>
+                                <li class="pb-3">8 de octubre 1334 esq. Propios</li>
+                                <li class="pb-3">Av. Italia 3456 esq. Centenario</li>
+                                <li class="pb-3">18 de julio 5678 esq. Vázquez</li>
+                                <li class="pb-3">Bulevar Artigas 3789 esq. Garibaldi</li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-lg-6 w-100 m-0 mapa">
+                            <iframe src="https://www.google.com/maps/d/embed?mid=1HUFY7ilWMDdqNPyI6JERJry8nZ5zKxRQ&hl=es-419" width="100%" height="300"></iframe>
+                        </div>
+            </div>
+
     </div>
     <!-- Sociales template -->
 {% include 'include/info.html' %}

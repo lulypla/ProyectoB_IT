@@ -8,91 +8,11 @@
 	background:green;
 }
 
-/* Grilla */
-.body{
-	display: grid;
-	grid-template-areas:
-	"header header"
-	"section aside"
-	"section aside"
-	"sociales sociales"
-	"footer footer";
-}
-.body header{
-	grid-area: header;
-}
-.body section{
-	grid-area: section;
-}
-.body aside{
-	grid-area: aside;
-}
-.body .sociales{
-	grid-area: sociales;
-}
-.body footer{
-	grid-area: footer;
-}
-
-@media(max-width: 799px){
-	.body{
-		display: grid;
-		grid-template-areas:
-		"header" 
-		"main"
-		"section"
-		"aside"
-		"sociales"
-		"footer";
-		margin:0px;
-
+@media (max-width:768px){
+	.container .encontra h3{
+		font-size: 20px!important;
 	}
 }
 
-.headerCentros{
-	height: 90px;
-	margin-bottom: 20px;
-}
-
-/*  Puntos cercanos */
-.cercanos{
-
-	margin: 50px;
-	width: auto;
 
 
-}
-.cercanos h3, .org h3{
-	color: green;
-	text-align: center;
-	margin: 20px auto;
-}
-
-.mapa{
-	width:40%;
-}
-
-
-.direccion li{
-	line-height: 3; 
-}
-.mapa, .direccion{
-	display: inline-block;
-}
-
-.mapa{
-	width: 33%;
-	}
-	
-.direccionesDiv{
-width: 50%;
-}
-
-.cercanos{
-	display: flex !important;
-}
-
-.headerCentros{
-	height: 60px;
-	margin-bottom: 20px;
-}
