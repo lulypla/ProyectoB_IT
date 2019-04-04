@@ -19,16 +19,27 @@ function Canjear(id){
           dataType: "json",
           contentType: "application/json; charset=utf-8",
           data:  JSON.stringify(idEnvioOferta),
-          success: function(result){
-                alert(result['resultado']),
-                $("#modalMensaje.modal-body").html(result['resultado']); 
-             },
+          success : function(result){
+                var res = result['resultado'];
+                alert(res);
+                $('#exampleModalCenter').modal({show:true});
+          },
+          
+               
+               
+              
+            
           error: function(){
               alert('error')
           }  
         });
 }
 </script>
+
+<!-------------------------->
+
+
+ 
 </head>
 <body>
 
@@ -49,7 +60,8 @@ function Canjear(id){
                                       <p class="card-text"><span class="subTitle">Cantidad Ecobit:</span> {{oferta[4]}}</p>
                                     </div>
                                     {% if session['email'] and session['email'] != ''%}
-                                       <a class="btn btn-primary"  href="javascript:Canjear({{oferta[0]}});" >Canjear</a>
+                                       <a class="btn btn-primary"  href="javascript:Canjear({{oferta[0]}})";>Canjear</a>
+                                       <!--type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"-->
                                     {% else %}
                                         <a class="btn btn-primary" href="/ingresar" >Canjear</a>
                                     {% endif %}
@@ -58,24 +70,54 @@ function Canjear(id){
                         {% endfor %}
                     </div>
                 </div>
-                <div  class="modal fade" id="modalMensaje">
-                    <div class="modal-dialog">
-                        <div class="modal-contnent">
-                            <!--HEADER MODAL-->
-                            <div class="modal-header">
-                                <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Resultado de Canje</h4>
-                            </div>
-                            <!--CONTENIDO-->
-                            <div class= "modal-body">
-                                
-                                
-                            </div>
-                        </div>
-                    </div>
+                           
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Confirmar Canje</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id=     "contenido">
+              Desea confirmar el canje?
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" onclick="resultadoF" data-target="#resultado" data-dismiss="modal">Si</button>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--MODAL DOS-->
+      <div class="modal fade" id="resultado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Confirmar Canje</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
- 
-   
+                <div class="modal-body" id=     "contenido">
+                  ...........................
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+               
+                
 
     <!-- Sociales template -->
 
