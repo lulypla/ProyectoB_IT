@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../static/js/validaciones.js"></script>
 
 
-    <script type="text/javascript">
+    <!-->script type="text/javascript">
       $(document).ready(function() {
         $.ajax({
           url: "/update_usuario_getDATA",
@@ -43,12 +43,12 @@
       });
     </script>
 
-    <!--SCRIT CON DATO OFERTA ELEGIDA-->
+    <!--SCRIT CON DATO OFERTA ELEGIDA->
 
     <script type="text/javascript">
       $(document).ready(function() {
         $.ajax({
-          url: "/Canje",
+          url: "/Oferta",
           type: "GET",
           dataType: "json",
           success: function(result) {
@@ -63,7 +63,7 @@
           }
         });
       });
-    </script>
+    </script-->
 
 
 </head>
@@ -73,17 +73,20 @@
        {% include 'include/menu.html' %}
             
     </header>
-    <!--EN PROCESO DE DESARROLLO - PARA AGREGAR EN LA DEFENSA-->
+
+    <h4 align= "center">  Funcionalidad en desarrollo </h4>
+
+    <!--EN PROCESO DE DESARROLLO - PARA AGREGAR EN LA DEFENSA->
     <div id = "_nombre"></div>
     <div id = "_apellido"></div>
     <div id = "_saldo"></div>  
         
-    <h4 align= "center">  Funcionalidad en desarrollo </h4>
+  
 
     <div id = "_titulo"></div>
     <div id = "_descripcion"></div>
     <div id = "_costo"></div> 
-    <div id = "_imagen"></div> 
+    <div id = "_imagen"></div--> 
 
 
 

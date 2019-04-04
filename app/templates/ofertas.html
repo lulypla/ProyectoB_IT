@@ -14,16 +14,15 @@
 function Canjear(id){
     var idEnvioOferta = {idOferta: id}
     $.ajax({
-          url: "/Canje",
+          url: "/Canjear",
           type: "POST",
           dataType: "json",
           contentType: "application/json; charset=utf-8",
           data:  JSON.stringify(idEnvioOferta),
           success: function(result){
-              //aca hace el redirect o lo que quieras, levantar un alert, un modal de que se canjeo. etc
-              //este alert result ahora muestra el object data = {} vacio construido en el back
-                    alert(result)
-            },
+                alert(result['resultado']),
+                $("#modalMensaje.modal-body").html(result['resultado']); 
+             },
           error: function(){
               alert('error')
           }  
@@ -50,13 +49,29 @@ function Canjear(id){
                                       <p class="card-text"><span class="subTitle">Cantidad Ecobit:</span> {{oferta[4]}}</p>
                                     </div>
                                     {% if session['email'] and session['email'] != ''%}
-                                       <a class="btn btn-primary" href="javascript:Canjear({{oferta[0]}});" >Canjear</a>
+                                       <a class="btn btn-primary"  href="javascript:Canjear({{oferta[0]}});" >Canjear</a>
                                     {% else %}
                                         <a class="btn btn-primary" href="/ingresar" >Canjear</a>
                                     {% endif %}
                             </div>
                        
                         {% endfor %}
+                    </div>
+                </div>
+                <div  class="modal fade" id="modalMensaje">
+                    <div class="modal-dialog">
+                        <div class="modal-contnent">
+                            <!--HEADER MODAL-->
+                            <div class="modal-header">
+                                <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Resultado de Canje</h4>
+                            </div>
+                            <!--CONTENIDO-->
+                            <div class= "modal-body">
+                                
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
  

@@ -8,6 +8,7 @@ from classes import *
 from flask import Flask, request, render_template, url_for, session, json, redirect, flash, jsonify
 import json
 import datetime
+from random import choice
 
 app = Flask(__name__)
 
@@ -68,39 +69,54 @@ def ingresar():
     else:
         return render_template('ingresar.html')
 
-@app.route('/Canje', methods= ['POST'])
-def canje():
-    
-    print (request.is_json)
+@app.route('/Canjear', methods= ['POST', 'GET'])
+def canjear():
+    #VARIABLES DE GENERADOR DE CODIGO
+    longitud=5
+    valores= "0123456789abcdefghijklmnopqrstwxyzABCDEFGHIJKLMNOPQRSTWXYZ"
+    codigo = ''
+    # RECEPCION DE JSON
     content = request.get_json()
-    print (content)
-    #Aca mira la consola, tenes el id, hace las consultas que tengas que hacer con eso
-    #y despues en el data = {} arma el json que va a ser el "result" paramentro que toma el success
-    # si queres mandar algo, mandalo ahi, sino en la funcion success haces el reenvio de html que querias con 
-    #un windown.location.href o un redirect de javascript y  listo.
-    ## despues los print de arriba se pueden sacar, los deje para que veas lo que llega nomas
-    data = {}
-    return json.dumps(data)
-
-def getDataOferta(_idOferta):
-        # CONSULTA DE OFERTA ELEGIDA
-    mycursor.execute("""
+    id = content['idOferta']
+    print (id)
+   # CONSULTA DE OFERTA ELEGIDA
+    mycursor.execute(""" 
         SELECT *
-        FROM Oferta WHERE idOferta %s """, [_idOferta]
-        )
+        FROM Oferta WHERE idOferta """, format([id]))
     rows = mycursor.fetchall()
     data = {}
+    data['id'] = rows[0][0]
     data['titulo'] = rows[0][2]
     data['descripcion'] = rows[0][3]
     data['costo'] = rows[0][4]
     data['imagen'] = rows[0][6]
-    return json.dumps(data)
-
-
-
-
-
-
+    print (data)
+    costo = data['costo']
+    print (costo)
+    # CONSULTA DE SALDO DE USUARIO SESIONADO
+    idUsuario = session['idUsuario']
+    mycursor.execute("""
+        SELECT *
+        FROM Cliente
+        WHERE idUsuario = %s
+        """, [idUsuario])
+    rows = mycursor.fetchall()
+    dataU = {}
+    dataU['ecobit'] = rows[0][7]
+    print (dataU)
+    saldo = dataU['ecobit']
+    print (saldo)
+    # EVALUACION DE CANJE
+    if costo <= saldo:
+            codigo = codigo.join([choice(valores) for i in range(longitud)])
+            resultado = "Felicitaciones ha realizado el canje exitosamente, presentando el siguiente codigo:  ", codigo, " ante el comercio podra retirar su producto.  Esperamos que continue recilando!!!" 
+            
+    else: 
+        resultado = "Usted tiene saldo insuficiente para realizar este canje,  lo invitamos a continuar recilando!!!" 
+    # PREPARACION DE JSON PARA RESULT DE SUCCESS           
+    dataR  = {}
+    dataR['resultado'] = resultado
+    return json.dumps(dataR)
 
 #-----------------------------------------------
 
