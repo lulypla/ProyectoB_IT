@@ -25,17 +25,18 @@
           success: function(result) {
             var res = result["resultado"];
             let contenido;
-            if (res.length) {
+            if (res.length && typeof res !== "string") {
               contenido = res.join(" ");
             } else {
-              contenido = res.resultado;
+              contenido = res;
             }
+            $("#contenido").empty();
             $("#contenido").append(contenido);
             $("#exampleModalCenter").modal({ show: true });
           },
 
           error: function() {
-            alert("error");
+            alert("Error en el servidor, por favor reiniciar el mismo");
           }
         });
       }

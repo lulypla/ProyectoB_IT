@@ -114,7 +114,7 @@ def canjear():
         resultado = "Felicitaciones ha realizado el canje exitosamente, presentando el siguiente codigo: ", codigo, " ante el comercio podra retirar su producto. Esperamos que continue reciclando!!!"
 
     else:
-        resultado = "Usted tiene saldo insuficiente para realizar este canje,  lo invitamos a continuar recilando!!!"
+        resultado = "Usted tiene saldo insuficiente para realizar este canje, lo invitamos a continuar reciclando!!!"
     # PREPARACION DE JSON PARA RESULT DE SUCCESS
     dataR = {}
     dataR['resultado'] = resultado
