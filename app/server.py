@@ -15,9 +15,10 @@ app = Flask(__name__)
 app.secret_key = 'AVerSiFuncionaConEstaMierda'
 
 mydb = mysql.connector.connect(
-    host='remotemysql.com', database='AqoOvh1tJq', user='AqoOvh1tJq', password='IWv4eTB3oe' , connect_timeout=50000)
+    host='remotemysql.com', database='AqoOvh1tJq', user='AqoOvh1tJq', password='IWv4eTB3oe', connect_timeout=50000)
 
 mycursor = mydb.cursor()
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -69,16 +70,17 @@ def ingresar():
     else:
         return render_template('ingresar.html')
 
-@app.route('/Canjear', methods= ['POST', 'GET'])
+
+@app.route('/Canjear', methods=['POST', 'GET'])
 def canjear():
-    #VARIABLES DE GENERADOR DE CODIGO
-    longitud=5
-    valores= "0123456789abcdefghijklmnopqrstwxyzABCDEFGHIJKLMNOPQRSTWXYZ"
+    # VARIABLES DE GENERADOR DE CODIGO
+    longitud = 5
+    valores = "0123456789abcdefghijklmnopqrstwxyzABCDEFGHIJKLMNOPQRSTWXYZ"
     codigo = ''
     # RECEPCION DE JSON
     content = request.get_json()
     id = content['idOferta']
-    print (id)
+    print(id)
    # CONSULTA DE OFERTA ELEGIDA
     mycursor.execute(""" 
         SELECT *
@@ -90,9 +92,9 @@ def canjear():
     data['descripcion'] = rows[0][3]
     data['costo'] = rows[0][4]
     data['imagen'] = rows[0][6]
-    print (data)
+    print(data)
     costo = data['costo']
-    print (costo)
+    print(costo)
     # CONSULTA DE SALDO DE USUARIO SESIONADO
     idUsuario = session['idUsuario']
     mycursor.execute("""
@@ -103,22 +105,23 @@ def canjear():
     rows = mycursor.fetchall()
     dataU = {}
     dataU['ecobit'] = rows[0][7]
-    print (dataU)
+    print(dataU)
     saldo = dataU['ecobit']
-    print (saldo)
+    print(saldo)
     # EVALUACION DE CANJE
     if costo <= saldo:
-            codigo = codigo.join([choice(valores) for i in range(longitud)])
-            resultado = "Felicitaciones ha realizado el canje exitosamente, presentando el siguiente codigo:  ", codigo, " ante el comercio podra retirar su producto.  Esperamos que continue recilando!!!" 
-            
-    else: 
-        resultado = "Usted tiene saldo insuficiente para realizar este canje,  lo invitamos a continuar recilando!!!" 
-    # PREPARACION DE JSON PARA RESULT DE SUCCESS           
-    dataR  = {}
+        codigo = codigo.join([choice(valores) for i in range(longitud)])
+        resultado = "Felicitaciones ha realizado el canje exitosamente, presentando el siguiente codigo: ", codigo, " ante el comercio podra retirar su producto. Esperamos que continue reciclando!!!"
+
+    else:
+        resultado = "Usted tiene saldo insuficiente para realizar este canje,  lo invitamos a continuar recilando!!!"
+    # PREPARACION DE JSON PARA RESULT DE SUCCESS
+    dataR = {}
     dataR['resultado'] = resultado
     return json.dumps(dataR)
 
-#-----------------------------------------------
+# -----------------------------------------------
+
 
 @app.route('/procesaLogin', methods=['POST'])
 def login():
@@ -134,11 +137,11 @@ def login():
     rows = mycursor.fetchall()
     if not rows:
         #session['messages'] = 'El usuario no existe.'
-        flash ("El usuario no existe")
+        flash("El usuario no existe")
         return render_template('ingresar.html')
     elif rows[0][2] != password:
         #session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
-        flash ("La contraseña no es válida. Intente nuevamente")
+        flash("La contraseña no es válida. Intente nuevamente")
         return render_template('ingresar.html')
     else:
         session['email'] = rows[0][1]
@@ -169,7 +172,7 @@ def registroUsuarioPost():
     for field in fields:
         value = request.form.get(field, None)
         if value is None:
-            missing.append(field) 
+            missing.append(field)
     if missing:
         return render_template('signup_usuario.html')
 
@@ -189,7 +192,7 @@ def registroUsuarioPost():
         rows = mycursor.fetchall()
         if not rows:
             idUsario = 0
-        else:    
+        else:
             idUsuario = rows[0][0]
             idUsuario = idUsuario + 1
         # hago el insert en la tabla usuario
@@ -246,12 +249,9 @@ def getDataUsuario():
     return json.dumps(data)
 
 
-
-
-
 @app.route('/update_usuario', methods=['POST'])
 def postUpdateUsuario():
-    #vacio mensaje de session
+    # vacio mensaje de session
     #session['messages'] = ''
     email = session['email']
     idUsuario = session['idUsuario']
@@ -303,20 +303,20 @@ def postUpdateUsuario():
 
 @app.route('/EliminarCuenta', methods=['GET'])
 def eliminarCuenta():
-    
+
     emailUsuarioEliminar = session['email']
     idUsuarioEliminar = session['idUsuario']
-    
-    #Elimina en tabla Usuario
+
+    # Elimina en tabla Usuario
     mycursor.execute(
         """DELETE FROM Usuario WHERE email = %s """, [emailUsuarioEliminar])
     mydb.commit()
-    
-    #Elimina en tabla Cliente
+
+    # Elimina en tabla Cliente
     mycursor.execute(
         """DELETE FROM Cliente WHERE idUsuario = %s """, [idUsuarioEliminar])
     mydb.commit()
-    
+
     flash("Cuenta Eliminada Satisfactoriamente")
     return cerrarSesion()
 
