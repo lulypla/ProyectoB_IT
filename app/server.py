@@ -1,23 +1,16 @@
 # -*- coding: UTF-8 -*-
 
 import sys
-import os
-import mysql.connector
-import pymysql
-from classes import *
+from dao import ofertas_dao, usuarios_dao
 from flask import Flask, request, render_template, url_for, session, json, redirect, flash, jsonify
 import json
-import datetime
 from random import choice
+from classes.Usuario import Usuario
 
 app = Flask(__name__)
 
-app.secret_key = 'AVerSiFuncionaConEstaMierda'
+app.secret_key = 'secretKey'
 
-mydb = mysql.connector.connect(
-    host='remotemysql.com', database='AqoOvh1tJq', user='AqoOvh1tJq', password='IWv4eTB3oe', connect_timeout=50000)
-
-mycursor = mydb.cursor()
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -30,11 +23,7 @@ def index():
 @app.route('/ofertas', methods=['GET'])
 def ofertas():
         # pagina ofertas
-    mycursor.execute("""
-        SELECT *
-        FROM Oferta
-        """)
-    rows = mycursor.fetchall()
+    rows = ofertas_dao.get_ofertas()
     return render_template('ofertas.html', ofertas=rows)
 
 
@@ -80,34 +69,19 @@ def canjear():
     # RECEPCION DE JSON
     content = request.get_json()
     id = content['idOferta']
-    print(id)
    # CONSULTA DE OFERTA ELEGIDA
-    mycursor.execute(""" 
-        SELECT *
-        FROM Oferta WHERE idOferta """, format([id]))
-    rows = mycursor.fetchall()
+    rows = ofertas_dao.get_oferta__porId(id)
     data = {}
     data['id'] = rows[0][0]
     data['titulo'] = rows[0][2]
     data['descripcion'] = rows[0][3]
     data['costo'] = rows[0][4]
     data['imagen'] = rows[0][6]
-    print(data)
     costo = data['costo']
-    print(costo)
     # CONSULTA DE SALDO DE USUARIO SESIONADO
     idUsuario = session['idUsuario']
-    mycursor.execute("""
-        SELECT *
-        FROM Cliente
-        WHERE idUsuario = %s
-        """, [idUsuario])
-    rows = mycursor.fetchall()
-    dataU = {}
-    dataU['ecobit'] = rows[0][7]
-    print(dataU)
-    saldo = dataU['ecobit']
-    print(saldo)
+    usuario = usuarios_dao.get_usuario(idUsuario)
+    saldo = usuario.saldo
     # EVALUACION DE CANJE
     if costo <= saldo:
         codigo = codigo.join([choice(valores) for i in range(longitud)])
@@ -129,25 +103,29 @@ def login():
     email = request.form['email']
     password = request.form['password']
     #usuarioNoRegistrado = "Usuario no registrado"
-    mycursor.execute("""
-        SELECT *
-        FROM Usuario
-        WHERE email = %s
-        """, [email])
-    rows = mycursor.fetchall()
-    if not rows:
+
+    usuario = usuarios_dao.get_usuario(email, password)
+    if not usuario:
         #session['messages'] = 'El usuario no existe.'
         flash("El usuario no existe")
         return render_template('ingresar.html')
-    elif rows[0][2] != password:
-        #session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
-        flash("La contraseña no es válida. Intente nuevamente")
-        return render_template('ingresar.html')
+        # session['messages'] = 'La contraseña no es válida. Intente nuevamente.'
+        # flash("La contraseña no es válida. Intente nuevamente")
+        # return render_template('ingresar.html')
     else:
-        session['email'] = rows[0][1]
-        session['idUsuario'] = rows[0][0]
+        session['email'] = usuario.email
+        session['idUsuario'] = usuario.idUsuario
         return redirect(url_for('ofertas'))
 
+@app.route('/api/v1/login' , methods=['POST'])
+def login_api():
+    data = request.get_json()
+    email = data['mail']
+    password = data['password']
+    usuario = usuarios_dao.get_usuario(email)
+    if usuario is None:
+        return jsonify({"error": "Usuario no existe o credenciales incorrectas"})
+    return jsonify(usuario.__dict__())
 
 @app.route('/usuario', methods=['GET', 'POST'])
 def miPanel():
@@ -177,34 +155,15 @@ def registroUsuarioPost():
         return render_template('signup_usuario.html')
 
     # Me fijo que no haya ningun usuario con ese email
-    mycursor.execute("""
-        SELECT *
-        FROM Usuario
-        WHERE email = %s
-        """, [request.form.get('email')])
-    rows = mycursor.fetchall()
+
+    rows = usuarios_dao.get_usuario(request.form.get('email'))
     if not rows:
-        # obtengo el id del ultimo insert
-        mycursor.execute("""
-        SELECT idUsuario
-        FROM Usuario ORDER BY idUsuario DESC LIMIT 1
-        """)
-        rows = mycursor.fetchall()
-        if not rows:
-            idUsario = 0
-        else:
-            idUsuario = rows[0][0]
-            idUsuario = idUsuario + 1
         # hago el insert en la tabla usuario
-        sql = "INSERT INTO Usuario (idUsuario, email, password, tipo) VALUES ("+str(idUsuario)+",'"+[
-            request.form.get('email')][0]+"','"+[request.form.get('password')][0]+"',"+str(1)+")"
-        mycursor.execute(sql)
-        # hago el insert en la tabla cliente
-        sql = "INSERT INTO Cliente (idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac, ecobit, tipoDoc) VALUES ("+str(idUsuario)+" ,'"+[request.form.get('nombre')][0]+"' , '"+[request.form.get('apellido')][0]+"' , '" + [
-            request.form.get('nro_documento')][0]+"' , '" + [request.form.get('sexo')][0]+"' , '" + [request.form.get('tel')][0]+"' , '" + str([request.form.get('fecha_nac')][0])+"' , "+str(0)+" , '"+[request.form.get('tipo_doc')][0] + "')"
-        mycursor.execute(sql)
-        # actualizo en la base los insert
-        mydb.commit()
+        email = request.form.get('email')
+        password = request.form.get('password')
+        nombre = request.form.get('nombre')
+        usuarioClase = Usuario(email,password,0,nombre)
+        result = usuarios_dao.create_usuario(usuarioClase)
         return render_template('ingresar.html')
     else:
         # hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
@@ -227,14 +186,13 @@ def updateUsuario():
 @app.route('/update_usuario_getDATA', methods=['GET'])
 def getDataUsuario():
     # consulto tabla cliente
+    has_id = session.get('idUsuario')
+    has_email = session.get('email')
+    if(has_id is None or has_email is None):
+        return '', 204
     idUsuario = session['idUsuario']
     email = session['email']
-    mycursor.execute("""
-        SELECT *
-        FROM Cliente
-        WHERE idUsuario = %s
-        """, [idUsuario])
-    rows = mycursor.fetchall()
+    rows = usuarios_dao.get_usuario(idUsuario)
    # idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac,ecobit, tipoDoc
     data = {}
     data['nombre'] = rows[0][1]
@@ -268,12 +226,8 @@ def postUpdateUsuario():
         return redirect(url_for('update_usuario.html'))
 
     # Me fijo que haya ningun usuario con ese email
-    mycursor.execute("""
-        SELECT *
-        FROM Usuario
-        WHERE email = %s
-        """, [email])
-    rows = mycursor.fetchall()
+
+    rows = usuarios_dao.get_usuario(email)
     if rows:
         password = [request.form.get('password')][0]
 
@@ -282,17 +236,17 @@ def postUpdateUsuario():
         password = [request.form.get('password')][0]
         sql = "UPDATE Usuario set email = '"+email+"', password = '" + \
             password+"' WHERE idUsuario = "+str(idUsuario)+""
-        mycursor.execute(sql)
+        # mycursor.execute(sql)
 
         # hago el insert en la tabla cliente
         nombre = [request.form.get('nombre')][0]
         apellido = [request.form.get('apellido')][0]
         fechaNac = str([request.form.get('fecha_nac')][0])
-        sql = "UPDATE Cliente set nombre = '"+nombre+"', apellido = '"+apellido+"' ,ci = '" + [request.form.get('nro_documento')][0]+"' ,sexo= '"+[request.form.get(
-            'sexo')][0]+"',celular='"+[request.form.get('tel')][0]+"',fecDeNac= '" + fechaNac+"', tipoDoc = '" + [request.form.get('tipo_doc')][0]+"' WHERE idUsuario = "+str(idUsuario)+""
-        mycursor.execute(sql)
+        # sql = "UPDATE Cliente set nombre = '"+nombre+"', apellido = '"+apellido+"' ,ci = '" + [request.form.get('nro_documento')][0]+"' ,sexo= '"+[request.form.get(
+        #     'sexo')][0]+"',celular='"+[request.form.get('tel')][0]+"',fecDeNac= '" + fechaNac+"', tipoDoc = '" + [request.form.get('tipo_doc')][0]+"' WHERE idUsuario = "+str(idUsuario)+""
+        # mycursor.execute(sql)
         # actualizo en la base los insert
-        mydb.commit()
+        # mydb.commit()
         session['email'] = email
         return redirect(url_for('updateUsuario'))
     else:
@@ -305,17 +259,8 @@ def postUpdateUsuario():
 def eliminarCuenta():
 
     emailUsuarioEliminar = session['email']
-    idUsuarioEliminar = session['idUsuario']
 
-    # Elimina en tabla Usuario
-    mycursor.execute(
-        """DELETE FROM Usuario WHERE email = %s """, [emailUsuarioEliminar])
-    mydb.commit()
 
-    # Elimina en tabla Cliente
-    mycursor.execute(
-        """DELETE FROM Cliente WHERE idUsuario = %s """, [idUsuarioEliminar])
-    mydb.commit()
 
     flash("Cuenta Eliminada Satisfactoriamente")
     return cerrarSesion()

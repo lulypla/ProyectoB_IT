@@ -33,6 +33,10 @@
 	grid-area: footer;
 }
 
+.cardOferta {
+max-width: 250px;
+max-height: 250px;
+}
 
 @media(max-width: 799px){
 	.body{
