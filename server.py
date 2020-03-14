@@ -6,7 +6,6 @@ from flask import Flask, request, render_template, url_for, session, json, redir
 import json
 from random import choice
 from classes.Usuario import Usuario
-from services import  image
 
 app = Flask(__name__)
 
@@ -121,7 +120,7 @@ def login():
 @app.route('/api/v1/login' , methods=['POST'])
 def login_api():
     data = request.get_json()
-    email = data['mail']
+    email = data['email']
     password = data['password']
     usuario = usuarios_dao.get_usuario(email)
     if usuario is None:
@@ -132,7 +131,7 @@ def login_api():
 def upload_photo():
     data = request.get_json()
     image_data = data['image']
-    mail = data['mail']
+    mail = data['email']
     resultado = usuarios_dao.update_foto(image_data,mail)
     return jsonify(resultado)
 
@@ -173,13 +172,16 @@ def registroUsuarioPost():
         password = request.form.get('password')
         nombre = request.form.get('nombre')
         usuarioClase = Usuario(email,password,0,nombre)
-        result = usuarios_dao.create_usuario(usuarioClase)
+        usuarios_dao.create_usuario(usuarioClase)
         return render_template('ingresar.html')
     else:
         # hay que ver como borrar esto porque hasata que no ande el post de nuevo, o sea se registre de verdad ok, no se va a borrar
         #session['messages'] = 'El email ya está en uso.'
         flash('El email ya está en uso')
         return render_template('signup_usuario.html')
+
+
+
 
 
 @app.route('/signup_empresa', methods=['GET'])
