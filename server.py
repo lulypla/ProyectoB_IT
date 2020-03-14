@@ -6,6 +6,7 @@ from flask import Flask, request, render_template, url_for, session, json, redir
 import json
 from random import choice
 from classes.Usuario import Usuario
+from services import  image
 
 app = Flask(__name__)
 
@@ -126,6 +127,15 @@ def login_api():
     if usuario is None:
         return jsonify({"error": "Usuario no existe o credenciales incorrectas"})
     return jsonify(usuario.__dict__())
+
+@app.route('/api/v1/user/updatePhoto' , methods=['POST'])
+def upload_photo():
+    data = request.get_json()
+    image_data = data['image']
+    mail = data['mail']
+    resultado = usuarios_dao.update_foto(image_data,mail)
+    return jsonify(resultado)
+
 
 @app.route('/usuario', methods=['GET', 'POST'])
 def miPanel():
