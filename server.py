@@ -182,6 +182,20 @@ def registroUsuarioPost():
         return render_template('signup_usuario.html')
 
 
+@app.route('/api/v1/registro', methods=['POST'])
+def api_registro():
+    data = request.get_json()
+    email = data['email']
+    password = data['password']
+    nombre = data['nombre']
+    apellido = data['apellido']
+    celular = data['celular']
+    usuario = Usuario(email, password, 0, nombre, None, apellido, celular)
+    usuarioResultado = usuarios_dao.create_usuario(usuario)
+    return jsonify(usuarioResultado)
+
+
+
 @app.route('/signup_empresa', methods=['GET'])
 def registroEmpresa():
     # registro

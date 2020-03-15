@@ -8,11 +8,16 @@ def get_usuario(email):
     rows = db.db_instance.query_get(query)
     usuario = None
     for u in rows:
-        usuario = Usuario.Usuario(u[0], u[1], u[3], u[2], u[4])
+        usuario = Usuario.Usuario(u[0], u[1], u[3], u[2], u[4], u[5], u[6])
     # 0 'email'
     # 1 'password'
     # 2 'nombre'
     # 3 'saldo'
+    # 4 'apellido'
+    # 5 'celular'
+    # No devolver nunca la pass del usuario!
+    if(usuario is not None):
+        usuario.password = None
     return usuario
 
 
@@ -26,12 +31,16 @@ def login_usuario(email, password):
 
 
 def create_usuario(usuario: Usuario):
-    query = "INSERT INTO users (email,password,nombre,ecobits) VALUES ('{email}','{password}','{nombre}',0)".format(
-        email=usuario.email, password=usuario.password, nombre=usuario.nombre
+    query = "INSERT INTO users (email,password,nombre,saldo, apellido, celular) " \
+            "VALUES ('{email}','{password}','{nombre}',0,'{apellido}','{celular}')".format(
+        email=usuario.email, password=usuario.password,
+        nombre=usuario.nombre,apellido=usuario.apellido,celular=usuario.celular
     )
-    resultado = db.db_instance.query_insert(query)
+    db.db_instance.query_insert(query)
     usuario_from_db = get_usuario(usuario.email)
-    return usuario_from_db
+    if(usuario_from_db is not None):
+        return usuario_from_db.__dict__()
+    return {'error': 'Error en el registro'}
 
 
 def update_usuario(usuario_actualizado: Usuario):
