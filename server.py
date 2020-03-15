@@ -12,7 +12,6 @@ app = Flask(__name__)
 app.secret_key = 'secretKey'
 
 
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     session['messages'] = ''
@@ -104,7 +103,7 @@ def login():
     password = request.form['password']
     #usuarioNoRegistrado = "Usuario no registrado"
 
-    usuario = usuarios_dao.get_usuario(email, password)
+    usuario = usuarios_dao.login_usuario(email, password)
     if not usuario:
         #session['messages'] = 'El usuario no existe.'
         flash("El usuario no existe")
@@ -117,7 +116,8 @@ def login():
         session['idUsuario'] = usuario.idUsuario
         return redirect(url_for('ofertas'))
 
-@app.route('/api/v1/login' , methods=['POST'])
+
+@app.route('/api/v1/login', methods=['POST'])
 def login_api():
     data = request.get_json()
     email = data['email']
@@ -127,12 +127,13 @@ def login_api():
         return jsonify({"error": "Usuario no existe o credenciales incorrectas"})
     return jsonify(usuario.__dict__())
 
-@app.route('/api/v1/user/updatePhoto' , methods=['POST'])
+
+@app.route('/api/v1/user/updatePhoto', methods=['POST'])
 def upload_photo():
     data = request.get_json()
     image_data = data['image']
     mail = data['email']
-    resultado = usuarios_dao.update_foto(image_data,mail)
+    resultado = usuarios_dao.update_foto(image_data, mail)
     return jsonify(resultado)
 
 
@@ -171,7 +172,7 @@ def registroUsuarioPost():
         email = request.form.get('email')
         password = request.form.get('password')
         nombre = request.form.get('nombre')
-        usuarioClase = Usuario(email,password,0,nombre)
+        usuarioClase = Usuario(email, password, 0, nombre)
         usuarios_dao.create_usuario(usuarioClase)
         return render_template('ingresar.html')
     else:
@@ -179,9 +180,6 @@ def registroUsuarioPost():
         #session['messages'] = 'El email ya está en uso.'
         flash('El email ya está en uso')
         return render_template('signup_usuario.html')
-
-
-
 
 
 @app.route('/signup_empresa', methods=['GET'])
@@ -271,8 +269,6 @@ def postUpdateUsuario():
 def eliminarCuenta():
 
     emailUsuarioEliminar = session['email']
-
-
 
     flash("Cuenta Eliminada Satisfactoriamente")
     return cerrarSesion()
