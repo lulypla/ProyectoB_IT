@@ -18,14 +18,7 @@ def get_usuario(email):
 
 def login_usuario(email, password):
     usuario = get_usuario(email)
-    print('LA PASS')
-    print(password)
-    print('el email')
-    print(email)
-    print('el usuario')
-    print(usuario)
     if usuario is None:
-        pri
         return None
     if usuario.password == password:
         return usuario
