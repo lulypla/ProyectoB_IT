@@ -122,7 +122,7 @@ def login_api():
     data = request.get_json()
     email = data['email']
     password = data['password']
-    usuario = usuarios_dao.get_usuario(email)
+    usuario = usuarios_dao.login_usuario(email, password)
     if usuario is None:
         return jsonify({"error": "Usuario no existe o credenciales incorrectas"})
     return jsonify(usuario.__dict__())
