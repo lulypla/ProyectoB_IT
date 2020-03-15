@@ -1,5 +1,5 @@
 import dao.db as d
-
+import classes.Oferta as Oferta
 
 # 0 'codigo'
 # 1 'titulo'
@@ -9,7 +9,12 @@ import dao.db as d
 def get_ofertas():
     query = "SELECT * FROM oferta"
     rows = d.db_instance.query_get(query)
-    return rows
+    ofertas = []
+
+    for r in rows:
+        oferta = Oferta.Oferta(r[0], r[1], r[2], r[3], r[4])
+        ofertas.append(oferta)
+    return ofertas
 
 def get_oferta__porId(id):
     query = "SELECT * FROM oferta WHERE id=%s" % id

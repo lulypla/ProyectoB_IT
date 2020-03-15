@@ -195,25 +195,22 @@ def updateUsuario():
 
 @app.route('/update_usuario_getDATA', methods=['GET'])
 def getDataUsuario():
-    # consulto tabla cliente
     has_id = session.get('idUsuario')
     has_email = session.get('email')
     if(has_id is None or has_email is None):
         return '', 204
     idUsuario = session['idUsuario']
-    email = session['email']
-    rows = usuarios_dao.get_usuario(idUsuario)
-   # idUsuario, nombre, apellido,ci,sexo,celular,fecDeNac,ecobit, tipoDoc
+    usuario = usuarios_dao.get_usuario(idUsuario)
     data = {}
-    data['nombre'] = rows[0][1]
-    data['apellido'] = rows[0][2]
-    data['documento'] = rows[0][3]
-    data['sexo'] = rows[0][4]
-    data['celular'] = rows[0][5]
-    data['fechaDeNac'] = rows[0][6]
-    data['tipoDoc'] = rows[0][8]
-    data['email'] = email
-    data['ecobit'] = rows[0][7]
+    data['nombre'] = usuario.nombre
+    data['apellido'] = ""
+    data['documento'] = ""
+    data['sexo'] = ""
+    data['celular'] = ""
+    data['fechaDeNac'] = ""
+    data['tipoDoc'] = ""
+    data['email'] = usuario.email
+    data['ecobit'] = usuario.saldo
     return json.dumps(data)
 
 

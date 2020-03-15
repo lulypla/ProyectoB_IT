@@ -55,22 +55,22 @@
         <div class="card">
           <img
             class="card-img-top cardOferta"
-            src="{{ oferta[3] }}"
+            src="{{ oferta.imagen }}"
             alt="Card image cap"
           />
           <div class="card-body">
-            <h5 class="card-title">{{ oferta[2] }}</h5>
+            <h5 class="card-title">{{ oferta.titulo }}</h5>
             <p class="card-text">
-              <span class="subTitle">Detalle:</span> {{ oferta[3] }}
+              <span class="subTitle">Detalle:</span> {{ oferta.descripcion }}
             </p>
             <p class="card-text">
-              <span class="subTitle">Cantidad Ecobit:</span> {{ oferta[4] }}
+              <span class="subTitle">Cantidad Ecobit:</span> {{ oferta.precio }}
             </p>
           </div>
           {% if session['email'] and session['email'] != ''%}
           <a
             class="btn btn-primary"
-            href="javascript:Canjear({{ oferta[0] }})"
+            href="javascript:Canjear({{ oferta.codigo }})"
             ;
             >Canjear</a
           >
