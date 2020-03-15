@@ -113,7 +113,7 @@ def login():
         # return render_template('ingresar.html')
     else:
         session['email'] = usuario.email
-        session['idUsuario'] = usuario.idUsuario
+        session['idUsuario'] = usuario.email
         return redirect(url_for('ofertas'))
 
 
