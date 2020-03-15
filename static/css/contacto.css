@@ -21,7 +21,7 @@ section, article{
     background:linear-gradient(rgb(154, 237, 158),rgb(87, 206, 51));
     color: #fff;
     margin: 30px auto;
-    overflow: center;
+    overflow: scroll;
     padding: 0px 5px;
     width: 38%;
     border-radius: 10px;

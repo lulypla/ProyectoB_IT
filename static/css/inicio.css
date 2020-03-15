@@ -47,7 +47,7 @@ h2{
 /* letras del slider */
 
 .img h2 span{
-	background: linear-gradient(rgb(243, 243, 243,0.7), rgb(239, 247, 237,0.5));
+	background: linear-gradient(rgb(243, 243, 243), rgb(239, 247, 237));
 	color: green;
 	display: inline;
 	padding: 2%;

@@ -55,7 +55,7 @@ max-height: 250px;
 }
 
 .subTitle{
-	font: bold;
+	font-weight: bold;
 }
 
 *{font-family: 'Titillium Web', sans-serif;}
