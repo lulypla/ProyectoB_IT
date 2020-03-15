@@ -2,6 +2,7 @@ from dao import db
 from classes import Usuario
 from services import image
 
+
 def get_usuario(email):
     query = "SELECT * FROM users WHERE email='%s'" % email
     rows = db.db_instance.query_get(query)
@@ -15,9 +16,16 @@ def get_usuario(email):
     return usuario
 
 
-def login_usuario(email,password):
+def login_usuario(email, password):
     usuario = get_usuario(email)
+    print('LA PASS')
+    print(password)
+    print('el email')
+    print(email)
+    print('el usuario')
+    print(usuario)
     if usuario is None:
+        pri
         return None
     if usuario.password == password:
         return usuario
@@ -32,6 +40,7 @@ def create_usuario(usuario: Usuario):
     usuario_from_db = get_usuario(usuario.email)
     return usuario_from_db
 
+
 def update_usuario(usuario_actualizado: Usuario):
     query = "UPDATE users SET email='{email}'" \
             "password='{password}'" \
@@ -40,13 +49,15 @@ def update_usuario(usuario_actualizado: Usuario):
                 email=usuario_actualizado.email,
                 password=usuario_actualizado.password,
                 nombre=usuario_actualizado.nombre)
-    resultado = db.db_instance.query_insert(query);
+    resultado = db.db_instance.query_insert(query)
     return resultado
+
 
 def update_foto(image_data, email):
     url = image.upload_image(image_data)
-    query = "UPDATE users SET foto='{foto}' WHERE email='{email}'".format(email=email, foto=url)
-    resultado = db.db_instance.query_insert(query);
+    query = "UPDATE users SET foto='{foto}' WHERE email='{email}'".format(
+        email=email, foto=url)
+    resultado = db.db_instance.query_insert(query)
     usuario = get_usuario(email)
     if(usuario.foto != url):
         return {'error': "Error en query"}
