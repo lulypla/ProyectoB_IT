@@ -15,13 +15,25 @@ class db:
         self.cur.close()
         self.con.close()
 
+    def connect(self):
+        self.con = mysql.connector.connect(host=host, database=database, user=user, password=password,
+                                           connect_timeout=50000)
+        self.cur = self.con.cursor()
     def query_get(self, text):
-        self.cur.execute(text)
+        try:
+            self.cur.execute(text)
+        except (mysql.connector.errors.InterfaceError):
+            self.connect()
+            self.cur.execute(text)
         rows = self.cur.fetchall()
         return rows
 
     def query_insert(self, text):
-        self.cur.execute(text)
+        try:
+            self.cur.execute(text)
+        except (mysql.connector.errors.InterfaceError):
+            self.connect()
+            self.cur.execute(text)
         return self.con.commit()
 
 
