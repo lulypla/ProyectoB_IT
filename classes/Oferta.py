@@ -1,4 +1,6 @@
-class Oferta:
+import json.encoder
+
+class Oferta :
 
     def __init__(self, codigo, titulo, descripcion, imagen, precio):
         self.codigo = codigo

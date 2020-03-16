@@ -25,6 +25,17 @@ def ofertas():
     rows = ofertas_dao.get_ofertas()
     return render_template('ofertas.html', ofertas=rows)
 
+@app.route('/api/v1/ofertas', methods=['GET'])
+def api_ofertas():
+    ofertas = ofertas_dao.get_ofertas()
+    if(ofertas is not None):
+        respuesta = []
+        for o in ofertas:
+            respuesta.append(o.__dict__())
+        return jsonify(respuesta)
+    return jsonify({'error': "Error obteniendo ofertas"})
+
+
 
 @app.route('/centros', methods=['GET', 'POST'])
 def centros():
@@ -217,10 +228,10 @@ def getDataUsuario():
     usuario = usuarios_dao.get_usuario(idUsuario)
     data = {}
     data['nombre'] = usuario.nombre
-    data['apellido'] = ""
+    data['apellido'] = usuario.apellido
     data['documento'] = ""
     data['sexo'] = ""
-    data['celular'] = ""
+    data['celular'] = usuario.celular
     data['fechaDeNac'] = ""
     data['tipoDoc'] = ""
     data['email'] = usuario.email
