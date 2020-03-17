@@ -8,14 +8,18 @@ def get_usuario(email):
     rows = db.db_instance.query_get(query)
     usuario = None
     for u in rows:
-        usuario = Usuario.Usuario(u[0], u[1], u[3], u[2], u[4], u[5], u[6])
-    # 0 'email'
-    # 1 'password'
-    # 2 'nombre'
-    # 3 'saldo'
-    # 4 'apellido'
-    # 5 'celular'
-    # No devolver nunca la pass del usuario!
+        usuario = Usuario.Usuario(u[0], u[1], u[3], u[2], u[4], u[5], u[6], u[7], u[8], u[9], u[10])
+    # 0 'id'
+    # 1 "email"
+    # 2 'password'
+    # 3 'nombre'
+    # 4 'saldo'
+    # 5 'foto'
+    # 6 'apellido'
+    # 7 tel
+    # 8 nro doc
+    # 9 tipo doc
+    # 10 fecha_nac
     return usuario
 
 
@@ -30,10 +34,11 @@ def login_usuario(email, password):
 
 
 def create_usuario(usuario: Usuario):
-    query = "INSERT INTO users (email,password,nombre,saldo, apellido, celular) " \
-            "VALUES ('{email}','{password}','{nombre}',0,'{apellido}','{celular}')".format(
+    query = "INSERT INTO users (email,password,nombre,saldo, apellido, tel,nro_doc,tipo_doc,fecha_nac) " \
+            "VALUES ('{email}','{password}','{nombre}',0,'{apellido}','{tel}','{nro_doc}','{tipo_doc}','{fecha_nac}')".format(
         email=usuario.email, password=usuario.password,
-        nombre=usuario.nombre,apellido=usuario.apellido,celular=usuario.celular
+        nombre=usuario.nombre,apellido=usuario.apellido,tel=usuario.tel,
+        nro_doc=usuario.nro_doc,tipo_doc=usuario.tipo_doc,fecha_nac=usuario.fecha_nac
     )
     db.db_instance.query_insert(query)
     usuario_from_db = get_usuario(usuario.email)
