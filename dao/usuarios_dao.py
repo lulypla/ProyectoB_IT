@@ -8,7 +8,7 @@ def get_usuario(email):
     rows = db.db_instance.query_get(query)
     usuario = None
     for u in rows:
-        usuario = Usuario.Usuario(u[0], u[1], u[3], u[2], u[4], u[5], u[6], u[7], u[8], u[9], u[10])
+        usuario = Usuario.Usuario(u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7], u[8], u[9], u[10])
     # 0 'id'
     # 1 "email"
     # 2 'password'
