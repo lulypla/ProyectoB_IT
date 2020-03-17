@@ -16,8 +16,6 @@ def get_usuario(email):
     # 4 'apellido'
     # 5 'celular'
     # No devolver nunca la pass del usuario!
-    if(usuario is not None):
-        usuario.password = None
     return usuario
 
 
@@ -26,6 +24,7 @@ def login_usuario(email, password):
     if usuario is None:
         return None
     if usuario.password == password:
+        usuario.password = None
         return usuario
     return None
 
