@@ -134,7 +134,7 @@ def login_api():
     email = data['email']
     password = data['password']
     usuario = usuarios_dao.login_usuario(email, password)
-    if usuario is None:
+    if usuario is None | usuario.activo is False:
         return jsonify({"error": "Usuario no existe o credenciales incorrectas"})
     return jsonify(usuario.__dict__())
 
@@ -207,6 +207,21 @@ def api_registro():
     usuario = Usuario(None, email, password, 0, nombre, None, apellido, tel, nro_doc,tipo_doc,fecha_nac)
     usuarioResultado = usuarios_dao.create_usuario(usuario)
     return jsonify(usuarioResultado)
+
+@app.route('/api/v1/user', methods=['DELETE'])
+def api_baja_usuario():
+    data = request.get_json()
+    email = data['email']
+    usuarioResultado = usuarios_dao.dar_de_baja(email)
+    return jsonify(usuarioResultado)
+
+@app.route('/api/v1/user/saldo', methods=['PUT'])
+def api_agregar_saldo_usuario():
+    data = request.get_json()
+    saldo = data['saldo']
+    email = data['email']
+    resultado = usuarios_dao.agregar_saldo(email, saldo)
+    return jsonify(resultado)
 
 
 

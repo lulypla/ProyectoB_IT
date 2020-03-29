@@ -8,7 +8,7 @@ def get_usuario(email):
     rows = db.db_instance.query_get(query)
     usuario = None
     for u in rows:
-        usuario = Usuario.Usuario(u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7], u[8], u[9], u[10])
+        usuario = Usuario.Usuario(u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7], u[8], u[9], u[10], u[11])
     # 0 'id'
     # 1 "email"
     # 2 'password'
@@ -20,6 +20,7 @@ def get_usuario(email):
     # 8 nro doc
     # 9 tipo doc
     # 10 fecha_nac
+    # 11 activo
     return usuario
 
 
@@ -31,6 +32,20 @@ def login_usuario(email, password):
         usuario.password = None
         return usuario
     return None
+
+def agregar_saldo(email, saldo):
+    usuario = get_usuario(email)
+    usuario.saldo = usuario.saldo + saldo
+    query = "UPDATE users SET saldo='{saldo}'" \
+            "WHERE email='{email}'".format(
+                email=usuario.email,
+                saldo=usuario.saldo)
+    db.db_instance.query_insert(query)
+    usuario_actualizado = get_usuario(email)
+    if usuario_actualizado.saldo != usuario.saldo:
+        return {'error': "Carga de saldo ha fallado"}
+    return usuario.__dict__()
+
 
 
 def create_usuario(usuario: Usuario):
@@ -58,13 +73,22 @@ def update_usuario(usuario_actualizado: Usuario):
     resultado = db.db_instance.query_insert(query)
     return resultado
 
+def dar_de_baja(email):
+    query = "UPDATE users SET activo='0'" \
+            "WHERE email='{email}'".format(email=email)
+    db.db_instance.query_insert(query)
+    usuario = get_usuario(email)
+    if usuario.activo is False:
+        return usuario.__dict__()
+    return {'error': "Error en dada de baja"}
+
 
 def update_foto(image_data, email):
     url = image.upload_image(image_data)
     query = "UPDATE users SET foto='{foto}' WHERE email='{email}'".format(
         email=email, foto=url)
-    resultado = db.db_instance.query_insert(query)
+    db.db_instance.query_insert(query)
     usuario = get_usuario(email)
-    if(usuario.foto != url):
+    if usuario.foto != url:
         return {'error': "Error en query"}
     return usuario.__dict__()

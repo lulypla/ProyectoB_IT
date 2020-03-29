@@ -1,5 +1,5 @@
 class Usuario:
-  def __init__(self,id, email,password,saldo, nombre, foto, apellido, tel,nro_doc,tipo_doc,fecha_nac):
+  def __init__(self,id, email,password,nombre,saldo , foto, apellido, tel,nro_doc,tipo_doc,fecha_nac, activo):
     self.id = id
     self.email = email
     self.password = password
@@ -11,7 +11,10 @@ class Usuario:
     self.nro_doc = nro_doc
     self.tipo_doc = tipo_doc
     self.fecha_nac = fecha_nac
-
+    if(activo == 1):
+      self.activo = True
+    else:
+      self.activo = False
 
   def __dict__(self):
     return {
@@ -23,5 +26,6 @@ class Usuario:
       "nro_doc": self.nro_doc,
       "tipo_doc": self.tipo_doc,
       "foto": self.foto,
-      "tel": self.tel
+      "tel": self.tel,
+      "activo": self.activo
     }
