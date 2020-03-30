@@ -49,8 +49,8 @@ def agregar_saldo(email, saldo):
 
 
 def create_usuario(usuario: Usuario):
-    query = "INSERT INTO users (email,password,nombre,saldo, apellido, tel,nro_doc,tipo_doc,fecha_nac) " \
-            "VALUES ('{email}','{password}','{nombre}',0,'{apellido}','{tel}','{nro_doc}','{tipo_doc}','{fecha_nac}')".format(
+    query = "INSERT INTO users (email,password,nombre,saldo, apellido, tel,nro_doc,tipo_doc,fecha_nac, activo) " \
+            "VALUES ('{email}','{password}','{nombre}',0,'{apellido}','{tel}','{nro_doc}','{tipo_doc}','{fecha_nac}',1)".format(
         email=usuario.email, password=usuario.password,
         nombre=usuario.nombre,apellido=usuario.apellido,tel=usuario.tel,
         nro_doc=usuario.nro_doc,tipo_doc=usuario.tipo_doc,fecha_nac=usuario.fecha_nac
