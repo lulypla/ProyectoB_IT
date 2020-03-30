@@ -134,7 +134,7 @@ def login_api():
     email = data['email']
     password = data['password']
     usuario = usuarios_dao.login_usuario(email, password)
-    if usuario is None | usuario.activo is False:
+    if usuario is None or usuario.activo is False:
         return jsonify({"error": "Usuario no existe o credenciales incorrectas"})
     return jsonify(usuario.__dict__())
 
