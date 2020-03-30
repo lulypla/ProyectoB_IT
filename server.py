@@ -204,7 +204,7 @@ def api_registro():
     nro_doc = data.get('nro_doc', 0)
     tipo_doc = data.get('tipo_doc', "")
     fecha_nac = data.get('fecha_nac', "")
-    usuario = Usuario(None, email, password, 0, nombre, None, apellido, tel, nro_doc,tipo_doc,fecha_nac)
+    usuario = Usuario(None, email, password, 0, nombre, None, apellido, tel, nro_doc,tipo_doc,fecha_nac, 1)
     usuarioResultado = usuarios_dao.create_usuario(usuario)
     return jsonify(usuarioResultado)
 
