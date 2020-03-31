@@ -142,7 +142,7 @@ def login_api():
 @app.route('/api/v1/user/updatePhoto', methods=['POST'])
 def upload_photo():
     data = request.get_json()
-    image_data = data['photo']
+    image_data = data['foto']
     mail = data['email']
     resultado = usuarios_dao.update_foto(image_data, mail)
     return jsonify(resultado)
