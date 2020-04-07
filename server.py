@@ -324,6 +324,6 @@ def cerrarSesion():
 # levanta el servidor con el método run()
 if __name__ == '__main__':
     if sys.platform == 'darwin':  # puerto diferente si se ejecuta en MacOsX
-        app.run(debug=True, port=8080)
+        app.run(debug=True, port=8080, host='0.0.0.0')
     else:
         app.run(debug=True, port=98)

@@ -1,3 +1,5 @@
+import base64
+
 import cloudinary
 import cloudinary.uploader
 
@@ -10,5 +12,6 @@ def upload_image(image_data):
         api_secret="v05os3Owzc3SrB8T-KSUMBBY3e4"
     )
 
-    url = cloudinary.uploader.upload(image_data)
+    decoded = base64.decodebytes(image_data.encode())
+    url = cloudinary.uploader.upload(decoded)
     return url['secure_url']
