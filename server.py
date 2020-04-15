@@ -183,7 +183,7 @@ def registroUsuarioPost():
         email = request.form.get('email')
         password = request.form.get('password')
         nombre = request.form.get('nombre')
-        usuarioClase = Usuario(email, password, 0, nombre)
+        usuarioClase = Usuario(email, password, nombre, 0)
         usuarios_dao.create_usuario(usuarioClase)
         return render_template('ingresar.html')
     else:
@@ -204,7 +204,7 @@ def api_registro():
     nro_doc = data.get('nro_doc', 0)
     tipo_doc = data.get('tipo_doc', "")
     fecha_nac = data.get('fecha_nac', "")
-    usuario = Usuario(None, email, password, 0, nombre, None, apellido, tel, nro_doc,tipo_doc,fecha_nac, 1)
+    usuario = Usuario(None, email, password, nombre, 0, None, apellido, tel, nro_doc,tipo_doc,fecha_nac, 1)
     usuarioResultado = usuarios_dao.create_usuario(usuario)
     return jsonify(usuarioResultado)
 
